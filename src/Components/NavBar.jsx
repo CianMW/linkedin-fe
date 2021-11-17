@@ -164,7 +164,7 @@ render(){
                 <div className="d-flex darknavicon mb-2 nav-work">
                   <div id="link">
                     <Link
-                      to={"/profile/me"}
+                      to={"/profile/61944cb42e279cf7d22dd1eb"}
                       className="d-block pb-2"
                       style={{
                         fontWeight: "400",

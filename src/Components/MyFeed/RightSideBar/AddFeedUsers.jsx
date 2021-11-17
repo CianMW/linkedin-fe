@@ -13,15 +13,15 @@ import { Accordion, Card } from "react-bootstrap";
 const AddFeedUsers = (props) => {
   const [data, setData] = useState([]);
   const [randomSelection, setRandomSelection] = useState([]);
-  const myUrl = "https://striveschool-api.herokuapp.com/api/profile/";
+  const myUrl = "http://localhost:3001/users/";
 
   useEffect(() => {
     const fetchData = async () => {
       const userData = await fetchInfo(myUrl);
-      setData(userData);
-      randomize(userData)
+      setData(userData.getAllUsers);
+      randomize(userData.getAllUsers)
 
-      console.log(userData);
+      console.log(userData.getAllUsers);
     };
     fetchData();
   }, []);
