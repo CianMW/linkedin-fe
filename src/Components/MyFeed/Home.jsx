@@ -15,12 +15,12 @@ const Home = () => {
 
   useEffect(() => {
     const fetchUser = async (id) => {
-      const url = `https://striveschool-api.herokuapp.com/api/profile/${me}`;
+      const url = `http://localhost:3001/users/${id}`;
       const data = await fetchInfo(url);
       console.log({ data });
-      setUser(data);
+      await setUser({...data.foundUser});
     };
-    fetchUser();
+    fetchUser("61944cb42e279cf7d22dd1eb");
   }, []);
 
   return (
