@@ -74,6 +74,7 @@ const ActualFeed = ({ reversedFeed, fetchFeed, token }) => {
                         setSmShow={setSmShow}
                         id={elem._id}
                         token={token}
+                        element={elem}
                       />
                       <POSTPic
                         fetchFeed={fetchFeed}

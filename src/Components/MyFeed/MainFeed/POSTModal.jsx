@@ -7,18 +7,20 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
 
   const [text, setText] = useState({ text: "" });
   const [photo, setPhoto] = useState([])
+  // temporarily hardcoded user id
+  const user = {user:"61944cb42e279cf7d22dd1eb"}
 
   const newPost = async (e) => {
     e.preventDefault(e);
     try {
+      console.log("TRYING POST FETCH")
       const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/posts/",
+        "http://localhost:3001/posts/",
         {
           method: "POST",
-          body: JSON.stringify(text),
+          body: JSON.stringify({...user,...text}),
           headers: {
-            "Content-Type": "application/json",
-            Authorization:token,
+            "Content-Type": "application/json"
           },
         }
       );
@@ -31,7 +33,7 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
           formData.append("post", photo);
         
           const response = await fetch(
-            `https://striveschool-api.herokuapp.com/api/posts/${post._id}`,
+            `https://localhost:3001/posts/${post._id}`,
         
             {
               method: "POST",
