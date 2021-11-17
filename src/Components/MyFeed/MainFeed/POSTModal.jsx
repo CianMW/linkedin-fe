@@ -4,60 +4,57 @@ import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 
 const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
-
   const [text, setText] = useState({ text: "" });
-  const [photo, setPhoto] = useState([])
+  const [photo, setPhoto] = useState(null);
   // temporarily hardcoded user id
-  const user = {user:"61944cb42e279cf7d22dd1eb"}
+  const user = { user: "61944cb42e279cf7d22dd1eb" };
 
   const newPost = async (e) => {
     e.preventDefault(e);
     try {
-      console.log("TRYING POST FETCH")
-      const response = await fetch(
-        "http://localhost:3001/posts/",
-        {
-          method: "POST",
-          body: JSON.stringify({...user,...text}),
-          headers: {
-            "Content-Type": "application/json"
-          },
-        }
-      );
+      console.log("TRYING POST FETCH");
+      const response = await fetch("http://localhost:3001/posts/", {
+        method: "POST",
+        body: JSON.stringify({ ...user, ...text }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         let post = await response.json();
-        console.log(`this is the post`,post);
+        console.log(`this is the post ID`, post._id);
 
-        try {
-          let formData = new FormData();
-          formData.append("post", photo);
-        
-          const response = await fetch(
-            `https://localhost:3001/posts/${post._id}`,
-        
-            {
-              method: "POST",
-              body: formData,
-              headers: {
-                Authorization: token,
-              },
+        if (photo && post._id) {
+          try {
+            let formData = new FormData();
+            formData.append("image", photo);
+
+            const response = await fetch(
+              `http://localhost:3001/posts/${post._id}`,
+              {
+                method: "POST",
+                body: formData
+              }
+            );
+            if (response.ok) {
+              console.log(response);
+
+              fetchFeed();
+              setPhoto(false);
+              setText({ text: "" });
+              fetchFeed();
+              setSmShow(false);
+            } else {
+              console.log(`wow... that wasn't supposed to happen... Error`);
+              alert(`Woops we lost your data in the void .. try refreshing`);
             }
-          );
-          if (response.ok) {
-            console.log(response);
-        
-            fetchFeed();
-            setPhoto(false);
-            setText({text: ''})
-            fetchFeed()
-            setSmShow(false);
-
-          } else {
-            console.log(`wow... that wasn't supposed to happen... Error`);
-            alert(`Woops we lost your data in the void .. try refreshing`);
+          } catch (error) {
+            console.error(error);
           }
-        } catch (error) {
-          console.error(error);
+        } else {
+          setText({ text: "" });
+          fetchFeed();
+          setSmShow(false);
         }
       }
     } catch (error) {
@@ -70,31 +67,31 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
     console.log(text);
   }, [text]);
 
-//   const postPhoto = async(id) => {
-//   let formData = new FormData();
-//   formData.append("post", photo);
+  //   const postPhoto = async(id) => {
+  //   let formData = new FormData();
+  //   formData.append("post", photo);
 
-//   const response = await fetch(
-//     `https://striveschool-api.herokuapp.com/api/posts/${id}`,
+  //   const response = await fetch(
+  //     `https://striveschool-api.herokuapp.com/api/posts/${id}`,
 
-//     {
-//       method: "POST",
-//       body: formData,
-//       headers: {
-//         Authorization: token,
-//       },
-//     }
-//   );
-//   if (response.ok) {
-//     console.log(response);
+  //     {
+  //       method: "POST",
+  //       body: formData,
+  //       headers: {
+  //         Authorization: token,
+  //       },
+  //     }
+  //   );
+  //   if (response.ok) {
+  //     console.log(response);
 
-//     fetchFeed();
-//     setPhoto(false);
-//   } else {
-//     console.log('we got an error');
-//   }
-// }
-  
+  //     fetchFeed();
+  //     setPhoto(false);
+  //   } else {
+  //     console.log('we got an error');
+  //   }
+  // }
+
   return (
     <>
       <Modal
@@ -125,10 +122,13 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
               />
             </Form.Group>
             <div className="d-flex justify-content-end">
-            <Form.Group className="mb-3" controlId="#1">
-              <Form.Control type="file" onChange={(e)=> setPhoto(e.target.files[0])} />
+              <Form.Group className="mb-3" controlId="#1">
+                <Form.Control
+                  type="file"
+                  onChange={(e) => setPhoto(e.target.files[0])}
+                />
               </Form.Group>
-                
+
               <Button
                 variant="primary"
                 type="submit"
