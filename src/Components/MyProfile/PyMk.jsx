@@ -7,6 +7,7 @@ const PyMk = ({ refresh, setRefresh}) => {
   const [data, setData] = useState([]);
   const myUrl = `http://localhost:3001/users/`;
 
+  //FETCHES ALL THE USERS and sets the data
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchInfo(myUrl);
@@ -17,6 +18,8 @@ const PyMk = ({ refresh, setRefresh}) => {
   }, []);
 
   console.log(`hey it's me`, data);
+
+  //grabs the first 6 items in the array "data"
 
   const slicedData = data.slice(0, 6);
   

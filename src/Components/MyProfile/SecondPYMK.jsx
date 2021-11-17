@@ -7,19 +7,22 @@ import { Accordion, Card, Button} from "react-bootstrap";
 const SecondPYMK = () => {
   const [data, setData] = useState([]);
   const [toggled, setToggled] = useState(false)
-  const myUrl = `https://striveschool-api.herokuapp.com/api/profile/`;
+  const myUrl = `http://localhost:3001/users/`;
 
+  //FETCHES ALL THE USERS and sets the data
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchInfo(myUrl);
-      setData(data);
-      console.log(data);
+      setData(data.getAllUsers);
+      console.log(data.getAllUsers);
     };
     fetchData();
   }, []);
 
   console.log(`hey it's me`, data);
+
+  //Grabs the 6th to 10th items in the array "data"
 
   const secondSlicedData = data.slice(6,10)
   
