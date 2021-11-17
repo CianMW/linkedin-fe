@@ -23,11 +23,11 @@ const MyProfile = ({setCurrentUser}) => {
 
   useEffect(() => {
     const fetchUser = async (id) => {
-      const url = `http://localhost:3001/users/61944cb42e279cf7d22dd1eb`;
+      const url = `http://localhost:3001/users/${id}`;
       const data = await fetchInfo(url);
       console.log(`this are the users`,{ data });
       setUser({...data.foundUser});
-      setCurrentUser(data);
+      setCurrentUser({...data.foundUser});
     };
     fetchUser(params.id);
   }, [params.id, refresh]);
@@ -67,7 +67,7 @@ const MyProfile = ({setCurrentUser}) => {
                 </Col>
                 {/*Your Dashboard Section*/}
 
-                {params.id === "me" ? <ProfileDashboard user={user} /> : <></>}
+                {params.id === "61944cb42e279cf7d22dd1eb" ? <ProfileDashboard user={user} /> : <></>}
 
                 {/*Your Dashboard END*/}
 

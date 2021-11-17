@@ -150,7 +150,7 @@ render(){
                 </li>
               </div>
               <div className="xx  ">
-                <Link to={"/profile/me"}>
+                <Link to={"/profile/61944cb42e279cf7d22dd1eb"}>
                   {
                     this.props.currentUser === me
                   }

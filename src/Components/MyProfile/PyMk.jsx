@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 
 const PyMk = ({ refresh, setRefresh}) => {
   const [data, setData] = useState([]);
-  const myUrl = `https://striveschool-api.herokuapp.com/api/profile/`;
+  const myUrl = `http://localhost:3001/users/`;
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchInfo(myUrl);
-      setData(data);
-      console.log(data);
+      setData(data.getAllUsers);
+      console.log(data.getAllUsers);
     };
     fetchData();
   }, []);
