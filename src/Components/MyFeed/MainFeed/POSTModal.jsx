@@ -7,13 +7,13 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
   const [text, setText] = useState({ text: "" });
   const [photo, setPhoto] = useState(null);
   // temporarily hardcoded user id
-  const user = { user: "61944cb42e279cf7d22dd1eb" };
+  const user = { user: process.env.REACT_APP_CURRENTUSER };
 
   const newPost = async (e) => {
     e.preventDefault(e);
     try {
       console.log("TRYING POST FETCH");
-      const response = await fetch("http://localhost:3001/posts/", {
+      const response = await fetch(process.env.REACT_APP_URL + "posts/", {
         method: "POST",
         body: JSON.stringify({ ...user, ...text }),
         headers: {

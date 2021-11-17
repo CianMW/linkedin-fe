@@ -17,10 +17,10 @@ console.log(`this is the id`,id)
     e.preventDefault();
     try {
       let formData = new FormData();
-      formData.append("post", image);
+      formData.append("image", image);
 
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/${id}/`,
+        process.env.REACT_APP_URL +`posts/${id}/`,
 
         {
           method: "POST",

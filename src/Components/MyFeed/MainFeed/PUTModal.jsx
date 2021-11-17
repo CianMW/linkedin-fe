@@ -14,7 +14,7 @@ const PUTModal = ({ fetchFeed, reversedFeed, smShow, setSmShow, id, token, eleme
     e.preventDefault(e);
     try {
       const response = await fetch(
-        `http://localhost:3001/posts/${id}`,
+        process.env.REACT_APP_URL +`posts/${id}`,
         {
           method: "PUT",
           body: JSON.stringify(text),

@@ -10,7 +10,7 @@ const MainFeedSection = ({user}) => {
   const fetchFeed = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/posts/`,
+        process.env.REACT_APP_URL +`posts/`,
         {
           headers: {
             Authorization:token,

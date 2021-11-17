@@ -150,7 +150,7 @@ render(){
                 </li>
               </div>
               <div className="xx  ">
-                <Link to={"/profile/61944cb42e279cf7d22dd1eb"}>
+                <Link to={"/profile/"+ process.env.REACT_APP_CURRENTUSER}>
                   {
                     this.props.currentUser === me
                   }
@@ -164,7 +164,7 @@ render(){
                 <div className="d-flex darknavicon mb-2 nav-work">
                   <div id="link">
                     <Link
-                      to={"/profile/61944cb42e279cf7d22dd1eb"}
+                      to={"/profile/"+ process.env.REACT_APP_CURRENTUSER}
                       className="d-block pb-2"
                       style={{
                         fontWeight: "400",

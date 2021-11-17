@@ -13,7 +13,7 @@ import { Accordion, Card } from "react-bootstrap";
 const AddFeedUsers = (props) => {
   const [data, setData] = useState([]);
   const [randomSelection, setRandomSelection] = useState([]);
-  const myUrl = "http://localhost:3001/users/";
+  const myUrl = process.env.REACT_APP_URL +"users/";
 
   useEffect(() => {
     const fetchData = async () => {

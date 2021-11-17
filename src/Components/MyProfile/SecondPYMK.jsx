@@ -7,7 +7,7 @@ import { Accordion, Card, Button} from "react-bootstrap";
 const SecondPYMK = () => {
   const [data, setData] = useState([]);
   const [toggled, setToggled] = useState(false)
-  const myUrl = `http://localhost:3001/users/`;
+  const myUrl = process.env.REACT_APP_URL +`users/`;
 
   //FETCHES ALL THE USERS and sets the data
 

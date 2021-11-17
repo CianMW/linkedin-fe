@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const PyMk = ({ refresh, setRefresh}) => {
   const [data, setData] = useState([]);
-  const myUrl = `http://localhost:3001/users/`;
+  const myUrl = process.env.REACT_APP_URL +`users/`;
 
   //FETCHES ALL THE USERS and sets the data
   useEffect(() => {

@@ -33,7 +33,7 @@ const ActualFeed = ({ reversedFeed, fetchFeed, token }) => {
                 <Col className="text-right">
 
                   {/* .env was not working for the hardcoded user ID below */}
-                  {elem.user._id === "61944cb42e279cf7d22dd1eb" && (
+                  {elem.user._id === process.env.REACT_APP_CURRENTUSER && (
                     <>
                       <Button
                         variant="light"

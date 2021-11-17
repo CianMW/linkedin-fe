@@ -30,10 +30,10 @@ const ProfileSettings = ({ user, setRefresh, refresh }) => {
     e.preventDefault();
     try {
       let formData = new FormData();
-      formData.append("profile", image);
+      formData.append("image", image);
 
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${user._id}/picture`,
+        process.env.REACT_APP_URL +`users/${user._id}/upload`,
         {
           method: "POST",
           body: formData,
@@ -63,13 +63,12 @@ const ProfileSettings = ({ user, setRefresh, refresh }) => {
     e.preventDefault(e);
     try {
       const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/",
+        process.env.REACT_APP_URL +`users/${user._id}`,
         {
           method: "PUT",
           body: JSON.stringify(settings),
           headers: {
-            "Content-Type": "application/json",
-            Authorization:token,
+            "Content-Type": "application/json"
           },
         }
       );

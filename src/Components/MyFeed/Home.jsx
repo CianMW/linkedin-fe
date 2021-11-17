@@ -15,12 +15,12 @@ const Home = () => {
 
   useEffect(() => {
     const fetchUser = async (id) => {
-      const url = `http://localhost:3001/users/${id}`;
+      const url = process.env.REACT_APP_URL +`users/${id}`;
       const data = await fetchInfo(url);
       console.log({ data });
       await setUser({...data.foundUser});
     };
-    fetchUser("61944cb42e279cf7d22dd1eb");
+    fetchUser(process.env.REACT_APP_CURRENTUSER);
   }, []);
 
   return (
