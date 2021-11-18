@@ -30,7 +30,7 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
             formData.append("image", photo);
 
             const response = await fetch(
-              `http://localhost:3001/posts/${post._id}`,
+              process.env.REACT_APP_URL +`posts/${post._id}`,
               {
                 method: "POST",
                 body: formData

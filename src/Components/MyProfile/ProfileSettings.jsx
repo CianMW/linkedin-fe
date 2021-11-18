@@ -21,15 +21,16 @@ const ProfileSettings = ({ user, setRefresh, refresh }) => {
 
   const [image, setImage] = useState(null);
 
-  const target = (e) => {
-    console.log(e.target.files[0]);
-    if (e.target && e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-  };
+  // const target = (e) => {
+  //   console.log(e.target.files[0]);
+  //   if (e.target && e.target.files[0]) {
+  //     setImage(e.target.files[0]);
+  //   }
+  // };
 
   const submitImage = async (e) => {
     e.preventDefault();
+    console.log("MONGOOSE",user._id)
     try {
       let formData = new FormData();
       formData.append("image", image);
@@ -37,11 +38,8 @@ const ProfileSettings = ({ user, setRefresh, refresh }) => {
       const response = await fetch(
         process.env.REACT_APP_URL +`users/${user._id}/upload`,
         {
-          method: "POST",
-          body: formData,
-          headers: {
-            Authorization:token,
-          },
+          method: "PUT",
+          body: formData
         }
       );
       if (response.ok) {
@@ -51,7 +49,6 @@ const ProfileSettings = ({ user, setRefresh, refresh }) => {
         setLgShow(false);
         setRefresh(!refresh);
       } else {
-        console.log();
 
         console.log(`wow... that wasn't supposed to happen... Error`);
         alert(`Woops we lost your data in the void .. try refreshing`);
@@ -201,8 +198,8 @@ const ProfileSettings = ({ user, setRefresh, refresh }) => {
                 <Form.Group className="mb-3" controlId="#1">
                   <Form.Control
                     type="file"
-                    onChange={target}
-                    rows={3}
+                    onChange={(e) => setImage(e.target.files[0])}
+                     rows={3}
                     placeholder="What do you want to talk about?"
                     // name="description"
 

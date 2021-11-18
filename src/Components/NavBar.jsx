@@ -4,6 +4,8 @@ import { Accordion, Card, Button } from "react-bootstrap";
 import { me } from "../lib";
 import { useState, useEffect } from "react";
 import { Component } from "react";
+import dotenv from "dotenv/config"
+
 
 class NavBar extends Component {
   state = {
