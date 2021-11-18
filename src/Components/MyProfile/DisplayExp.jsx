@@ -40,7 +40,7 @@ const DisplayExp = ({ user, token, me }) => {
   console.log();
   return (
     <>
-      {user._id === process.env.REACT_APP_CURRENTUSER ? (
+      
         <Modal
           user={user._id}
           fetchExp={fetchExp}
@@ -49,7 +49,7 @@ const DisplayExp = ({ user, token, me }) => {
           expId={expId}
           setExpId={setExpId}
         />
-      ): (<></>)}
+      
       
       {data.map((exp) => (
         <>
