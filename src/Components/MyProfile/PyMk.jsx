@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { fetchInfo } from "../../lib";
 import { Link } from "react-router-dom";
+import dotenv from "dotenv/config"
+
 
 
 const PyMk = ({ refresh, setRefresh}) => {

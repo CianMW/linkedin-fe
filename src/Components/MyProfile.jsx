@@ -12,6 +12,8 @@ import SecondPYMK from "./MyProfile/SecondPYMK";
 import { areDayPropsEqual } from "@mui/lab/PickersDay/PickersDay";
 import {token , me} from "../lib"
 import Activity from "./Activity";
+import dotenv from "dotenv/config"
+
 
 const MyProfile = ({setCurrentUser}) => {
  

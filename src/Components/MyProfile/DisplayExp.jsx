@@ -25,8 +25,9 @@ const DisplayExp = ({ user, token, me }) => {
         }
       );
       const exp = await response.json();
-
-      setData(exp);
+      console.log("THIS IS TH FRIG",exp, user)
+        if(exp.length < 1){ setData(exp);}
+ 
     } catch (e) {
       console.log(e);
     }
@@ -39,7 +40,7 @@ const DisplayExp = ({ user, token, me }) => {
   console.log();
   return (
     <>
-      {user._id === me && (
+      {user._id === process.env.REACT_APP_CURRENTUSER && (
         <Modal
           user={user._id}
           fetchExp={fetchExp}
@@ -49,6 +50,7 @@ const DisplayExp = ({ user, token, me }) => {
           setExpId={setExpId}
         />
       )}
+      
       {data.map((exp) => (
         <>
           {user._id === me && (

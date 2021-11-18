@@ -21,7 +21,7 @@ const POSTPic = ({ expId, userId, picExp, setPicExp }) => {
       formData.append("experience", imageExp);
 
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}/picture`,
+        process.env.REACT_APP_URL +`users/${userId}/experience/${expId}/upload`,
 
         {
           method: "POST",

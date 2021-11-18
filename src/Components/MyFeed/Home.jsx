@@ -15,6 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchUser = async (id) => {
+      console.log("THIS IS THE DAMN USER ",process.env.REACT_APP_CURRENTUSER)
       const url = process.env.REACT_APP_URL +`users/${id}`;
       const data = await fetchInfo(url);
       console.log({ data });

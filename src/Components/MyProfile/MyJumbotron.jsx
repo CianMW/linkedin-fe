@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProfileSettings from "./ProfileSettings";
 import { useState } from "react";
+import dotenv from "dotenv/config"
 
 const MyJumbotron = ({ identification, user, setRefresh, refresh }) => {
   console.log("WTF HAHAHAH", user);

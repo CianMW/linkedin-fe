@@ -2,6 +2,8 @@ import { Button, Modal, Form, Container } from "react-bootstrap";
 import { SetState, useEffect, useState } from "react";
 import { fetchInfo } from "../../lib";
 import { token } from "../../lib";
+import dotenv from "dotenv/config"
+
 
 const ProfileSettings = ({ user, setRefresh, refresh }) => {
   const [lgShow, setLgShow] = useState(false);
