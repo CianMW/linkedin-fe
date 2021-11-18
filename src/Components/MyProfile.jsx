@@ -83,7 +83,7 @@ const MyProfile = ({setCurrentUser}) => {
                       <div className="d-flex d-inline-block justify-content-between">
                         <h4>Activity</h4>
 
-                        {params.id === "me" ? (
+                        {params.id === process.env.REACT_APP_CURRENTUSER ? (
                           <button className="profile-button">
                             Start a post
                           </button>
