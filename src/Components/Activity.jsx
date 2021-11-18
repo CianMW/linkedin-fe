@@ -1,13 +1,15 @@
 import {useState, useEffect} from 'react'
 import {token, me} from '../lib'
+import dotenv from "dotenv/config"
 
-const Activity = () => {
+
+const Activity = ({ user }) => {
     
     const [post, setPost] = useState([])
 
     const fetchPost = async() => {
         try{
-            const response = await fetch(`https://striveschool-api.herokuapp.com/api/posts/ `,{
+            const response = await fetch(process.env.REACT_APP_URL + `posts/${user._id} `,{
                 headers: {
                   Authorization:token,
                 },

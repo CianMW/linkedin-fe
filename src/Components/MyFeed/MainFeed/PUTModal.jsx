@@ -4,22 +4,22 @@ import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 
 
-const PUTModal = ({ fetchFeed, reversedFeed, smShow, setSmShow, id, token}) => {
-  const [text, setText] = useState({ text: "" });
+const PUTModal = ({ fetchFeed, reversedFeed, smShow, setSmShow, id, token, element}) => {
+  const [text, setText] = useState({ text: element.text });
   
   console.log('i am the id', id)
+  console.log("This is the update TEXT", text)
 
   const updatePost = async (e) => {
     e.preventDefault(e);
     try {
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/${id}`,
+        process.env.REACT_APP_URL +`posts/${id}`,
         {
           method: "PUT",
           body: JSON.stringify(text),
           headers: {
-            "Content-Type": "application/json",
-            Authorization:token,
+            "Content-Type": "application/json"
           },
         }
       );

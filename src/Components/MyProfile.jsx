@@ -12,6 +12,8 @@ import SecondPYMK from "./MyProfile/SecondPYMK";
 import { areDayPropsEqual } from "@mui/lab/PickersDay/PickersDay";
 import {token , me} from "../lib"
 import Activity from "./Activity";
+import dotenv from "dotenv/config"
+
 
 const MyProfile = ({setCurrentUser}) => {
  
@@ -23,7 +25,7 @@ const MyProfile = ({setCurrentUser}) => {
 
   useEffect(() => {
     const fetchUser = async (id) => {
-      const url = `http://localhost:3001/users/${id}`;
+      const url = process.env.REACT_APP_URL +`users/${id}`;
       const data = await fetchInfo(url);
       console.log(`this are the users`,{ data });
       setUser({...data.foundUser});
@@ -67,7 +69,7 @@ const MyProfile = ({setCurrentUser}) => {
                 </Col>
                 {/*Your Dashboard Section*/}
 
-                {params.id === "61944cb42e279cf7d22dd1eb" ? <ProfileDashboard user={user} /> : <></>}
+                {params.id === process.env.REACT_APP_CURRENTUSER ? <ProfileDashboard user={user} /> : <></>}
 
                 {/*Your Dashboard END*/}
 
@@ -81,7 +83,7 @@ const MyProfile = ({setCurrentUser}) => {
                       <div className="d-flex d-inline-block justify-content-between">
                         <h4>Activity</h4>
 
-                        {params.id === "me" ? (
+                        {params.id === process.env.REACT_APP_CURRENTUSER ? (
                           <button className="profile-button">
                             Start a post
                           </button>

@@ -18,7 +18,7 @@ const ModalPop = ({ user, fetchExp, lgShow, setLgShow, expId, setExpId }) => {
   // const url = `https://striveschool-api.herokuapp.com/api/profile/${user.id}/experiences`;
   console.log("hellooo" + user);
 
-  let url = `https://striveschool-api.herokuapp.com/api/profile/${user}/experiences/${expId}`;
+  let url = process.env.REACT_APP_URL +`users/${user}/experience/${expId}`;
   let method = "";
 
   {
@@ -87,10 +87,10 @@ const ModalPop = ({ user, fetchExp, lgShow, setLgShow, expId, setExpId }) => {
       
       try {
         let formData = new FormData();
-        formData.append("experience", upload );
+        formData.append("image", upload );
   
         const response = await fetch(
-          `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}/picture`,
+          process.env.REACT_APP_URL +`users/${userId}/experience/${expId}/upload`,
   
           {
             method: "POST",

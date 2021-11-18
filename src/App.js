@@ -26,6 +26,7 @@ function App() {
       <Route path="/home" exact component={Home} />
       <Route path="/search/:id" exact component={Search} />
 
+//"myProfile" is actually used for all profiles
       <Route path="/profile/:id" exact render={(props) => <MyProfile {...props} setCurrentUser={setCurrentUser} />} /> 
 
       <MyFooter />

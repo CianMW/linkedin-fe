@@ -10,7 +10,7 @@ const MainFeedSection = ({user}) => {
   const fetchFeed = async () => {
     try {
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/`,
+        process.env.REACT_APP_URL +`posts/`,
         {
           headers: {
             Authorization:token,
@@ -20,7 +20,8 @@ const MainFeedSection = ({user}) => {
      
       if(response.ok){ 
          const exp = await response.json();
-        let slicedFeed = exp.reverse().slice(0, 50);
+         console.log("HERE ARE THE POSTS!",exp.post)
+        let slicedFeed = exp.post.reverse().slice(0, 50);
          setFeed(slicedFeed);
          console.log(slicedFeed)
       }

@@ -172,7 +172,7 @@ export const postTimer = (x) => {
 // DELETE POST
 
 export const deletePost = async (id , fetchFeed) => {
-  const url = `https://striveschool-api.herokuapp.com/api/posts/${id}`;
+  const url = `http://localhost:3001/posts/`+id;
 
   console.log(token)
   try {
