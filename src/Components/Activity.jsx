@@ -30,8 +30,8 @@ const Activity = ({ user }) => {
               
             if(response.ok){
                let ourPost = await response.json();
-                
-                setPost(ourPost)
+                let newPosts = await ourPost.slice(0,2)
+                setPost(newPosts)
                 console.log(`BIGPOST`, ourPost)
             }
 
@@ -41,6 +41,9 @@ const Activity = ({ user }) => {
         }
     }
     console.log("bigpost",post)
+
+
+
     
     useEffect(() => {
         fetchPost();
@@ -62,7 +65,7 @@ const Activity = ({ user }) => {
                       <Col className="text-right">
       
                         {/* .env was not working for the hardcoded user ID below */}
-                        {elem.user._id === process.env.REACT_APP_CURRENTUSER && (
+                        {elem.user === process.env.REACT_APP_CURRENTUSER && (
                           <>
                             <Button
                               variant="light"
@@ -121,21 +124,21 @@ const Activity = ({ user }) => {
                       <div>
                         <img
                           className="mr-2 rounded-pill"
-                          src={elem.user.image}
+                          src={user.image}
                           width="50"
                           height="50"
                           //   style={{ borderRadius: "50%" }}
                         />{" "}
                       </div>
                       <div>
-                        <Link to={"/profile/" + elem.user._id} 
+                        <Link to={"/profile/" + user._id} 
                         className="text-left text-dark  text-decoration-none">
-                         <b className="text-left">{elem.user.name} {elem.user.surname}</b>
+                         <b className="text-left">{user.name} {user.surname}</b>
                         </Link>
       
                         <span className="text-left text-muted d-block"
                         style={{fontSize: "12px", fontWeight: "500"}} >
-                          {elem.user.title}</span>
+                          {user.title}</span>
                       </div>
                     </div>
                     <div>
