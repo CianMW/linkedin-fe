@@ -42,7 +42,7 @@ const MyJumbotron = ({ identification, user, setRefresh, refresh }) => {
                 More
               </Button>
             </p>
-            {identification === "me" ? (
+            {identification === process.env.REACT_APP_CURRENTUSER ? (
               <div className="opened-to-work text-left p-2">
                 <div className="mb-0">
                   <b className="text-dark jumbo-a">
@@ -66,7 +66,8 @@ const MyJumbotron = ({ identification, user, setRefresh, refresh }) => {
             )}
           </Col>
           <Col className=" d-flex-row text-right justify-content-right">
-            {identification === "me" ? (
+            {identification === process.env.REACT_APP_CURRENTUSER ? (
+              // this renders a "pencil button". when clicked it calls a modal to edit the user 
               <ProfileSettings
                 user={user}
                 setRefresh={setRefresh}
