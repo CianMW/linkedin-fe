@@ -3,11 +3,17 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 
-
-const PUTModal = ({ fetchFeed, reversedFeed, smShow, setSmShow, id, token}) => {
+const PUTModal = ({
+  fetchFeed,
+  reversedFeed,
+  smShow,
+  setSmShow,
+  id,
+  token,
+}) => {
   const [text, setText] = useState({ text: "" });
-  
-  console.log('i am the id', id)
+
+  // console.log('i am the id', id)
 
   const updatePost = async (e) => {
     e.preventDefault(e);
@@ -19,7 +25,7 @@ const PUTModal = ({ fetchFeed, reversedFeed, smShow, setSmShow, id, token}) => {
           body: JSON.stringify(text),
           headers: {
             "Content-Type": "application/json",
-            Authorization:token,
+            Authorization: token,
           },
         }
       );
@@ -42,7 +48,7 @@ const PUTModal = ({ fetchFeed, reversedFeed, smShow, setSmShow, id, token}) => {
 
   useEffect(() => {
     setText(text);
-    console.log(text);
+    // console.log(text);
   }, [text]);
 
   return (

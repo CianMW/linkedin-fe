@@ -4,9 +4,8 @@ import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 
 const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
-
   const [text, setText] = useState({ text: "" });
-  const [photo, setPhoto] = useState([])
+  const [photo, setPhoto] = useState([]);
 
   const newPost = async (e) => {
     e.preventDefault(e);
@@ -18,21 +17,21 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
           body: JSON.stringify(text),
           headers: {
             "Content-Type": "application/json",
-            Authorization:token,
+            Authorization: token,
           },
         }
       );
       if (response.ok) {
         let post = await response.json();
-        console.log(`this is the post`,post);
+        console.log(`this is the post`, post);
 
         try {
           let formData = new FormData();
           formData.append("post", photo);
-        
+
           const response = await fetch(
             `https://striveschool-api.herokuapp.com/api/posts/${post._id}`,
-        
+
             {
               method: "POST",
               body: formData,
@@ -43,13 +42,12 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
           );
           if (response.ok) {
             console.log(response);
-        
+
             fetchFeed();
             setPhoto(false);
-            setText({text: ''})
-            fetchFeed()
+            setText({ text: "" });
+            fetchFeed();
             setSmShow(false);
-
           } else {
             console.log(`wow... that wasn't supposed to happen... Error`);
             alert(`Woops we lost your data in the void .. try refreshing`);
@@ -65,34 +63,34 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
 
   useEffect(() => {
     setText(text);
-    console.log(text);
+    // console.log(text);
   }, [text]);
 
-//   const postPhoto = async(id) => {
-//   let formData = new FormData();
-//   formData.append("post", photo);
+  //   const postPhoto = async(id) => {
+  //   let formData = new FormData();
+  //   formData.append("post", photo);
 
-//   const response = await fetch(
-//     `https://striveschool-api.herokuapp.com/api/posts/${id}`,
+  //   const response = await fetch(
+  //     `https://striveschool-api.herokuapp.com/api/posts/${id}`,
 
-//     {
-//       method: "POST",
-//       body: formData,
-//       headers: {
-//         Authorization: token,
-//       },
-//     }
-//   );
-//   if (response.ok) {
-//     console.log(response);
+  //     {
+  //       method: "POST",
+  //       body: formData,
+  //       headers: {
+  //         Authorization: token,
+  //       },
+  //     }
+  //   );
+  //   if (response.ok) {
+  //     console.log(response);
 
-//     fetchFeed();
-//     setPhoto(false);
-//   } else {
-//     console.log('we got an error');
-//   }
-// }
-  
+  //     fetchFeed();
+  //     setPhoto(false);
+  //   } else {
+  //     console.log('we got an error');
+  //   }
+  // }
+
   return (
     <>
       <Modal
@@ -123,10 +121,13 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
               />
             </Form.Group>
             <div className="d-flex justify-content-end">
-            <Form.Group className="mb-3" controlId="#1">
-              <Form.Control type="file" onChange={(e)=> setPhoto(e.target.files[0])} />
+              <Form.Group className="mb-3" controlId="#1">
+                <Form.Control
+                  type="file"
+                  onChange={(e) => setPhoto(e.target.files[0])}
+                />
               </Form.Group>
-                
+
               <Button
                 variant="primary"
                 type="submit"
