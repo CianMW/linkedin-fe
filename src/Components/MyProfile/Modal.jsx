@@ -64,7 +64,8 @@ const ModalPop = ({ user, fetchExp, lgShow, setLgShow, expId, setExpId }) => {
           if (response.ok) {
            let postResponse = await response.json();
            console.log(`this is the post response`, postResponse);
-            await submitImage(postResponse.user, postResponse._id )
+           if(upload){ await submitImage(postResponse.user, postResponse._id )}
+           
             fetchExp();
             setLgShow(false);
             setFieldValue({
