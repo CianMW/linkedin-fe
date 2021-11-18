@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 import GoogleLogin from "react-google-login";
 import { GoogleLogout } from "react-google-login";
 import { useState, useEffect } from "react";
@@ -10,94 +11,103 @@ export default function Login({
   authorizedGoogleUser,
   setCurrentUser,
 }) {
-  const [authUser, setAuthUser] = useState({
-    google_id: authorizedGoogleUser.googleId,
-    name: authorizedGoogleUser.givenName,
-    surname: authorizedGoogleUser.familyName,
-    email: authorizedGoogleUser.email,
-    image: authorizedGoogleUser.imageUrl,
-    username: authorizedGoogleUser.name,
-  });
-
-  const createUserFromGoogleInfo = async () => {
-    try {
-      const res = await fetch(
-        `http://localhost:3001/users/${authorizedGoogleUser.google_id}/authorization`
-      );
-      if (!res.ok) {
-        const response = await fetch("http://localhost:3001/users/", {
-          method: "POST",
-          body: JSON.stringify(authUser),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        if (response.ok) {
-          const data = await res.json();
-          setCurrentUser({ ...data.foundUser });
-          console.log("SETTINGS OBJECT AFTER UPDATE");
-        } else {
-          console.log(`Error while updating google user`);
-          alert(`Error while Creating google user`);
-        }
-      } else {
-        alert(`User already exists`);
-        const data = await res.json();
-        setCurrentUser({ ...data.foundUser });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const responseGoogle = (response) => {
-    console.log(response);
-    console.log(response.profileObj);
-    console.log(isLoggedIn);
-  };
-
   return (
-    <div>
-      <br></br>
-      <br></br>
-      {!isLoggedIn ? (
-        <div>
-          <h1>PLEASE LOGIN</h1>
-          <br></br>
-          <br></br>
-          <GoogleLogin
-            clientId="475737513712-o3td3868lb7f9cgl3ql75lqhink9uenk.apps.googleusercontent.com"
-            buttonText="Login"
-            onSuccess={async (response) => {
-              setIsLoggedIn(true);
-              await setAuthorizedGoogleUser(response.profileObj);
-              responseGoogle(response);
-              await createUserFromGoogleInfo();
-            }}
-            onFailure={(response) => {
-              setIsLoggedIn(false);
-              responseGoogle(response);
-            }}
-            isSignedIn={true}
-            cookiePolicy={"single_host_origin"}
-          />
+    <div className="box">
+      <div className="p-5 card101 container">
+        <div className="row d-flex justify-content-center">
+          <div className="col-md-10">
+            <div className="card card102">
+              <div className="row no-gutters">
+                <div className="col-md-4 first">
+                  <div className="linkedin">
+                    <span className="no-gutters text-primary font-weight-bold">
+                      Linked
+                    </span>
+                    <span className="in">in</span>
+                  </div>
+                </div>
+                <div className="col-md-6 second pl-4 pr-4">
+                  <h4 className="welcome text-primary">Welcome</h4>
+                  <div className="form-group">
+                    {" "}
+                    <input
+                      type="email number"
+                      name="email number"
+                      placeholder="Email or Phone"
+                      className="form-control"
+                    />{" "}
+                    <input
+                      type="Password"
+                      name="Password"
+                      placeholder="Password"
+                      className="form-control"
+                    />
+                    <div className="forgot">
+                      <span>Forgot Password?</span>
+                    </div>
+                  </div>
+                  <div className="col s12 m6 offset-m3 center-align">
+                    <a
+                      className="btn darken-4 white black-text btn-outline-dark"
+                      href="http://localhost:3001/google"
+                      style={{ textTransform: "none" }}
+                    >
+                      <div className="left">
+                        <img
+                          width="20px"
+                          style={{ marginTop: 7, marginRight: 8 }}
+                          alt="Google sign-in"
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+                        />
+                      </div>
+                      Login with Google
+                    </a>
+                  </div>
+                  <div className="space">
+                    {" "}
+                    <button
+                      type="button"
+                      className="btn btn102 btn-primary btn101"
+                    >
+                      Login
+                    </button>{" "}
+                    <button
+                      type="button"
+                      className="btn btn102 btn-primary btn201"
+                    >
+                      Sign Up
+                    </button>{" "}
+                  </div>
+
+                  <div className="row">
+                    <div className="col-sm-4 under">
+                      {" "}
+                      <span>Copyright Policy</span>
+                      <p>User Agreement</p>
+                    </div>
+                    <div className="col-sm-3 under">
+                      {" "}
+                      <span>Privacy Policy</span>
+                      <p>Cookie Policy</p>
+                    </div>
+                    <div className="col-sm-4 under">
+                      {" "}
+                      <span>Send Feedback</span>
+                      <p>Community Guidelines</p>
+                    </div>
+                    <div className="col-md-1	">
+                      <p> </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-2">
+                  <p className="lower">Linkedin © 2020</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      ) : (
-        <div>
-          <h1>HERE LOGOUT</h1>
-          <br></br>
-          <br></br>
-          <GoogleLogout
-            clientId="475737513712-o3td3868lb7f9cgl3ql75lqhink9uenk.apps.googleusercontent.com"
-            buttonText="Logout"
-            onLogoutSuccess={(response) => {
-              setIsLoggedIn(false);
-            }}
-          ></GoogleLogout>
-        </div>
-      )}{" "}
-      <br></br>
-      <br></br>
+      </div>
     </div>
   );
 }

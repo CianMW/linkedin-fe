@@ -10,11 +10,10 @@ import { useParams } from "react-router-dom";
 import ProfileDashboard from "./MyProfile/ProfileDashboard";
 import SecondPYMK from "./MyProfile/SecondPYMK";
 import { areDayPropsEqual } from "@mui/lab/PickersDay/PickersDay";
-import {token , me} from "../lib"
+import { token, me } from "../lib";
 import Activity from "./Activity";
 
-const MyProfile = ({setCurrentUser}) => {
- 
+const MyProfile = ({ setCurrentUser }) => {
   const params = useParams();
   // let pathname = props.location.pathname;
   // console.log(pathname);
@@ -25,9 +24,9 @@ const MyProfile = ({setCurrentUser}) => {
     const fetchUser = async (id) => {
       const url = `http://localhost:3001/users/${id}`;
       const data = await fetchInfo(url);
-      console.log(`this are the users`,{ data });
-      setUser({...data.foundUser});
-      setCurrentUser({...data.foundUser});
+      console.log(`this are the users`, { data });
+      setUser({ ...data.foundUser });
+      setCurrentUser({ ...data.foundUser });
     };
     fetchUser(params.id);
   }, [params.id, refresh]);
@@ -67,13 +66,15 @@ const MyProfile = ({setCurrentUser}) => {
                 </Col>
                 {/*Your Dashboard Section*/}
 
-                {params.id === "61944cb42e279cf7d22dd1eb" ? <ProfileDashboard user={user} /> : <></>}
+                {params.id === "61944cb42e279cf7d22dd1eb" ? (
+                  <ProfileDashboard user={user} />
+                ) : (
+                  <></>
+                )}
 
                 {/*Your Dashboard END*/}
 
                 {/*Activity Section*/}
-                  
-                
 
                 <Col md={12} className="p-0">
                   <div className="section-container mt-3">
@@ -163,7 +164,7 @@ const MyProfile = ({setCurrentUser}) => {
                         <div>
                           <ul className="ul">
                             {/*Insert generated content here!!*/}
-                            <PyMk refresh={refresh} setRefresh={setRefresh}/>
+                            <PyMk refresh={refresh} setRefresh={setRefresh} />
                           </ul>
                         </div>
                       </div>

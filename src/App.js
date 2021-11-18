@@ -20,25 +20,42 @@ function App() {
 
   // ******************************* Google Auth *********************************
 
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [imageUrl, setImageUrl] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authorizedGoogleUser, setAuthorizedGoogleUser] = useState(false);
 
-  // ----------------------------------------------------------------
-  // const onSuccess = (googleUser) => {
-  //   setIsLoggedIn(true);
-  //   const profile = googleUser.getBasicProfile();
-  //   setName(profile.getName());
-  //   setEmail(profile.getEmail());
-  //   setImageUrl(profile.getImageUrl());
-  // };
+  const [authorizedCookie, setAuthorizedCookie] = useState();
 
   // ******************************* Google Auth *********************************
+  function parseCookies() {
+    try {
+      var list = {},
+        rc = document.cookie;
+
+      rc &&
+        rc.split(";").forEach(function (cookie) {
+          var parts = cookie.split("=");
+          list[parts.shift().trim()] = decodeURI(parts.join("="));
+        });
+
+      setAuthorizedCookie(list);
+      if (list.user_id) {
+        console.log(`------ failed`);
+        setIsLoggedIn(true);
+      } else {
+        console.log(`------ after the failed`);
+        setIsLoggedIn(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
-    console.log(`i am the currentUser`, currentUser);
+    parseCookies();
+    console.log(`=================== COOKISE ===================`);
+    console.log(authorizedCookie);
+    console.log(`=================== COOKISE ===================`);
+    // console.log(`i am the currentUser`, currentUser);
   }, [currentUser]);
 
   return (
@@ -68,7 +85,8 @@ function App() {
             setSearch={setSearch}
             setIsLoggedIn={setIsLoggedIn}
           />
-          <Route path="/" exact component={Home} />
+
+          <Route path="/home" exact component={Home} />
           <Route path="/search/:id" exact component={Search} />
 
           <Route

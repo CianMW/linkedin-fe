@@ -1,10 +1,10 @@
 import { Link, withRouter } from "react-router-dom";
 import { Avatar } from "@mui/material";
-import { Accordion, Card, Button, Image } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import { me } from "../lib";
 import { useState, useEffect } from "react";
 import { Component } from "react";
-import { GoogleLogout } from "react-google-login";
+
 class NavBar extends Component {
   state = {
     info: {
@@ -214,13 +214,7 @@ class NavBar extends Component {
                   </li>
                 </div>
                 {/* ******************************* Google Auth********************************* */}
-                <GoogleLogout
-                  clientId="475737513712-o3td3868lb7f9cgl3ql75lqhink9uenk.apps.googleusercontent.com"
-                  buttonText="Logout"
-                  onLogoutSuccess={(response) => {
-                    this.props.setIsLoggedIn(false);
-                  }}
-                ></GoogleLogout>
+
                 {/* ******************************* Google Auth********************************* */}
                 <div className="pt-3">
                   <a className="link-color navbar-li" href="#">

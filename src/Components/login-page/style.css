@@ -1,0 +1,120 @@
+.box {
+  background: #eee;
+  height: 100vh;
+  background-image: url("https://i.imgur.com/aeidEH1.jpg");
+  background-size: 100%;
+  /* margin-top: 5%; */
+}
+
+.card102 {
+  border-radius: 12px;
+}
+
+.card101 {
+  position: relative;
+  top: 150px;
+}
+
+.first {
+  background-image: url("https://image.freepik.com/free-vector/team-work-building-business-puzzle-illustration-people-character-together-idea-success-strategy-partnership_121223-1016.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border-radius: 12px;
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+.linkedin {
+  position: relative;
+  left: 25px;
+  top: 20px;
+  font-size: 19px;
+}
+
+.in {
+  border-width: 10px;
+  color: #fff;
+  background: blue;
+  font-weight: bold;
+}
+
+.second {
+  background: #fff;
+  border-radius: 12px;
+}
+
+.welcome {
+  margin-top: 130px;
+  font-size: 23px;
+}
+
+.form-group {
+  padding-top: 8px;
+  font-size: 12px;
+}
+
+.form-control {
+  background: #e3f2fd;
+  margin-top: 10px;
+  font-size: 9px;
+  font-weight: bold;
+  color: #fff;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  caret-color: red;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.forgot {
+  padding-top: 7px;
+  color: #42a5f5;
+}
+
+.space {
+  padding-top: 28px;
+}
+
+.btn102 {
+  border-radius: 0%;
+  font-size: 11px;
+  font-weight: bold;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.btn101 {
+  background: #0277bd;
+  padding-left: 46px;
+  padding-right: 46px;
+}
+
+.btn201 {
+  background-color: #fff;
+  color: #0277bd;
+  margin-left: 10px;
+}
+
+.under {
+  font-size: 8px;
+  color: #42a5f5;
+  padding-top: 40px;
+}
+
+.lower {
+  font-size: 8px;
+  color: #42a5f5;
+  position: relative;
+  top: 90%;
+}
+
+@media only screen and (max-width: 800px) {
+  .linkedin {
+    display: none;
+  }
+}

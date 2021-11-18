@@ -8,6 +8,7 @@ export const fetchInfo = async (url) => {
       headers: {
         Authorization: token,
       },
+      // credentials: true,
     });
     if (response.ok) {
       const data = await response.json();
