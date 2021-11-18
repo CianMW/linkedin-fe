@@ -21,7 +21,7 @@ const MyProfile = ({setCurrentUser}) => {
   const params = useParams();
   // let pathname = props.location.pathname;
   // console.log(pathname);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(false);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
@@ -94,7 +94,8 @@ const MyProfile = ({setCurrentUser}) => {
                       </div>
                       <p className="text-muted">11 followers</p>
                     </div>
-                    <Activity user={user} />
+                    {user && <Activity user={user} />}
+                   
                     {/* <div>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.

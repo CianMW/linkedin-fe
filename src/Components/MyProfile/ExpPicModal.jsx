@@ -26,22 +26,13 @@ const POSTPic = ({ expId, userId, picExp, setPicExp }) => {
 
         {
           method: "PUT",
-          body: formData,
-          headers: {
-            Authorization: token,
-          },
+          body: formData
         }
       );
       if (response.ok) {
-        console.log(response);
-        
-
-
-      
+        console.log(response)
         setPicExp(false);
       } else {
-        console.log();
-
         console.log(`wow... that wasn't supposed to happen... Error`);
         alert(`Woops we lost your data in the void .. try refreshing`);
       }
