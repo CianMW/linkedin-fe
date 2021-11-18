@@ -16,15 +16,16 @@ const POSTPic = ({ expId, userId, picExp, setPicExp }) => {
 
   const submitImage = async (e) => {
     e.preventDefault();
+    console.log("FUCK", userId, expId)
     try {
       let formData = new FormData();
       formData.append("experience", imageExp);
 
       const response = await fetch(
-        process.env.REACT_APP_URL +`users/${userId}/experience/${expId}/upload`,
+        process.env.REACT_APP_URL +`users/${userId}/experience/${expId}/imageUpload`,
 
         {
-          method: "POST",
+          method: "PUT",
           body: formData,
           headers: {
             Authorization: token,
