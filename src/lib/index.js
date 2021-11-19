@@ -113,7 +113,7 @@ export const fetchSinglUserExp = async (url) => {
 // DELETE SINGLE EXPERIENCE
 
 export const deleteSingleUserExp = async (user, expId, fetchExp, setLgShow) => {
-  const url = `https://striveschool-api.herokuapp.com/api/profile/${user}/experiences/${expId}`;
+  const url = `https://linked-in-back-end.herokuapp.com/users/${user}/experience/${expId}`;
 
   try {
     const response = await fetch(url, {
