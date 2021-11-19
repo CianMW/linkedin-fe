@@ -8,7 +8,7 @@ import Home from "./Components/MyFeed/Home";
 import { useState, useEffect } from "react";
 import Search from "./Components/MyFeed/Search";
 import { fetchInfo } from "../src/lib/index.js";
-import cookie from "react-cookie"
+import cookie from "react-cookie";
 // ******************************* Google Auth *********************************
 import GoogleLogin from "react-google-login";
 import Login from "./Components/login-page/Login";
@@ -26,20 +26,11 @@ function App() {
   const [authorizedCookie, setAuthorizedCookie] = useState();
 
   // ******************************* Google Auth *********************************
-  function parseCookies() {
+  function parseCookies(id) {
     try {
-      var list = {},
-        rc = document.cookie;
-
-      rc &&
-        rc.split(";").forEach(function (cookie) {
-          var parts = cookie.split("=");
-          list[parts.shift().trim()] = decodeURI(parts.join("="));
-        });
-
-      if (list.user_id) {
+      if (id) {
         console.log(`------ failed`);
-        setAuthorizedCookie(list.user_id);
+        setAuthorizedCookie(id);
         setIsLoggedIn(true);
 
         const fetchUser = async (id) => {
@@ -48,7 +39,7 @@ function App() {
           await setCurrentUser({ ...data.foundUser });
         };
 
-        fetchUser(list.user_id);
+        fetchUser(id);
       } else {
         console.log(`------ after the failed`);
         setIsLoggedIn(false);
@@ -59,12 +50,12 @@ function App() {
   }
 
   useEffect(() => {
-    const id = new URLSearchParams(window.location.search).get("id")
-if(id) {
-  cookie.set("user_id", id)
-  parseCookies()
-}
-   // parseCookies();
+    const id = new URLSearchParams(window.location.search).get("id");
+    if (id) {
+      console.log(id);
+      parseCookies(id);
+    }
+    // parseCookies();
     console.log(`=================== COOKISE ===================`);
     console.log(authorizedCookie);
     console.log(`=================== COOKISE ===================`);
