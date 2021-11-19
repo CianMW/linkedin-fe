@@ -89,7 +89,7 @@ function App() {
             setIsLoggedIn={setIsLoggedIn}
           />
 
-          <Route path="/home" exact component={Home} />
+          <Route path="/home" exact render={(props) => (<Home {...props} currentUser={currentUser}/>)}  />
           <Route path="/search/:id" exact component={Search} />
 
           <Route

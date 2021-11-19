@@ -157,8 +157,7 @@ class NavBar extends Component {
                   </li>
                 </div>
                 <div className="xx  ">
-                  <Link to={"/profile/" + process.env.REACT_APP_CURRENTUSER}>
-                    {this.props.currentUser === me}
+                  <Link to={"/profile/" + this.props.currentUser._id}>
                     <Avatar
                       src={this.props.currentUser.image}
                       className="d-block avatar"
@@ -169,7 +168,7 @@ class NavBar extends Component {
                   <div className="d-flex darknavicon mb-2 nav-work">
                     <div id="link">
                       <Link
-                        to={"/profile/" + process.env.REACT_APP_CURRENTUSER}
+                        to={"/profile/" + this.props.currentUser._id}
                         className="d-block pb-2"
                         style={{
                           fontWeight: "400",

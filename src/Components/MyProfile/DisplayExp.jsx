@@ -6,7 +6,7 @@ import Modal from "./Modal";
 import { format, parseISO } from "date-fns";
 import { postTimer } from "../../lib/index.js";
 
-const DisplayExp = ({ user, token, me }) => {
+const DisplayExp = ({ user, token, me, currentUser }) => {
   console.log(user);
 
   const [data, setData] = useState([]);
@@ -40,7 +40,7 @@ const DisplayExp = ({ user, token, me }) => {
   console.log();
   return (
     <>
-      {user._id === process.env.REACT_APP_CURRENTUSER && (
+      {user._id === currentUser._id && (
         <Modal
           user={user._id}
           fetchExp={fetchExp}
@@ -53,7 +53,7 @@ const DisplayExp = ({ user, token, me }) => {
       
       {data.map((exp) => (
         <>
-          {user._id === process.env.REACT_APP_CURRENTUSER && (
+          {user._id === currentUser._id && (
             <ExpPicModal
               expId={exp._id}
               userId={user._id}
@@ -77,7 +77,7 @@ const DisplayExp = ({ user, token, me }) => {
               <br />
               <p>{exp.description}</p>
             </Col>
-            {user._id === process.env.REACT_APP_CURRENTUSER && (
+            {user._id === currentUser._id && (
               <Col md={1}>
                 <button
                   onClick={() => {

@@ -29,7 +29,7 @@ const FirstSideBar = ({ user }) => {
             <Col className="text-left ">
               <div>
                 <Link
-                  to={"/profile/me"}
+                  to={`/profile/${user._id}`}
                   className="text-center text-dark d-block"
                   style={{
                     fontSize: "18px",

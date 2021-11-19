@@ -3,11 +3,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 
-const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
+const POSTModal = ({ smShow, setSmShow, fetchFeed, token , currentUser}) => {
   const [text, setText] = useState({ text: "" });
   const [photo, setPhoto] = useState(null);
   // temporarily hardcoded user id
-  const user = { user: process.env.REACT_APP_CURRENTUSER };
+
 
   const newPost = async (e) => {
     e.preventDefault(e);
@@ -15,7 +15,7 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
       console.log("TRYING POST FETCH");
       const response = await fetch(process.env.REACT_APP_URL + "posts/", {
         method: "POST",
-        body: JSON.stringify({ ...user, ...text }),
+        body: JSON.stringify({ user: currentUser._id, ...text }),
         headers: {
           "Content-Type": "application/json",
         },

@@ -3,7 +3,7 @@ import StartAPost from "./StartAPost";
 import { useState, useEffect } from "react";
 import { token } from "../../../lib";
 
-const MainFeedSection = ({ user }) => {
+const MainFeedSection = ({ user, currentUser }) => {
   let [feed, setFeed] = useState([]);
   const [smShow, setSmShow] = useState(false);
 
@@ -40,9 +40,10 @@ const MainFeedSection = ({ user }) => {
         fetchFeed={fetchFeed}
         token={token}
         user={user}
+        currentUser={currentUser}
       />
       <br />
-      <ActualFeed reversedFeed={feed} fetchFeed={fetchFeed} token={token} />
+      <ActualFeed reversedFeed={feed} currentUser={currentUser} fetchFeed={fetchFeed} token={token} />
     </>
   );
 };

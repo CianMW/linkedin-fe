@@ -13,7 +13,7 @@ import { deletePost } from '../lib'
 
 
 
-const Activity = ({ user }) => {
+const Activity = ({ user, currentUser }) => {
     
     const [post, setPost] = useState(false)
     const [smShow, setSmShow] = useState(false);
@@ -65,7 +65,7 @@ const Activity = ({ user }) => {
                       <Col className="text-right">
       
                         {/* .env was not working for the hardcoded user ID below */}
-                        {elem.user === process.env.REACT_APP_CURRENTUSER && (
+                        {elem.user === currentUser._id && (
                           <>
                             <Button
                               variant="light"
