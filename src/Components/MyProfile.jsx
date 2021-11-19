@@ -138,27 +138,6 @@ const MyProfile = ({ currentUser }) => {
                 </Col>
                 {/*Exp Section END*/}
 
-
-                {/*EDUCATION Section*/}
-                <Col md={12} className="p-0 rounded-lg">
-                  <div className="section-container mt-3">
-                    <div className="d-flex d-inline-block justify-content-between">
-                      <h4>Experience</h4>
-                    </div>
-                    
-
-                    <div className="position-relative">
-                      <DisplayExp
-                        user={user}
-                        currentUser={currentUser}
-                        token={token}
-                        me={me}
-                      />
-                    </div>
-                  </div>
-                </Col>
-                {/*EDUCATION Section END*/}
-
                 {/*Skills section Start*/}
 
                 <Col md={12} className="p-0">
