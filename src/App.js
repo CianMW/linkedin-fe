@@ -41,11 +41,13 @@ function App() {
         console.log(`------ failed`);
         setAuthorizedCookie(list.user_id);
         setIsLoggedIn(true);
+
         const fetchUser = async (id) => {
           const url = `http://localhost:3001/users/${id}`;
           const data = await fetchInfo(url);
-          setCurrentUser({ ...data.foundUser });
+          await setCurrentUser({ ...data.foundUser });
         };
+
         fetchUser(list.user_id);
       } else {
         console.log(`------ after the failed`);
@@ -89,7 +91,11 @@ function App() {
             setIsLoggedIn={setIsLoggedIn}
           />
 
-          <Route path="/home" exact render={(props) => (<Home {...props} currentUser={currentUser}/>)}  />
+          <Route
+            path="/home"
+            exact
+            render={(props) => <Home {...props} currentUser={currentUser} />}
+          />
           <Route path="/search/:id" exact component={Search} />
 
           <Route
