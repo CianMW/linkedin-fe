@@ -19,7 +19,7 @@ const POSTPic = ({ expId, userId, picExp, setPicExp }) => {
     console.log("FUCK", userId, expId)
     try {
       let formData = new FormData();
-      formData.append("experience", imageExp);
+      formData.append("image", imageExp);
 
       const response = await fetch(
         process.env.REACT_APP_URL +`users/${userId}/experience/${expId}/imageUpload`,

@@ -15,6 +15,8 @@ const DisplayExp = ({ user, token, me, currentUser }) => {
   const [expId, setExpId] = useState("");
 
   const fetchExp = async () => {
+    console.log("THIS IS TH FRIG BEFORE FETCH", user)
+
     try {
       const response = await fetch(
         process.env.REACT_APP_URL +`users/${user._id}/experience`,
@@ -51,7 +53,7 @@ const DisplayExp = ({ user, token, me, currentUser }) => {
         />
       )}
       
-      {data.map((exp) => (
+      {user.experience && user.experience.map((exp) => (
         <>
           {user._id === currentUser._id && (
             <ExpPicModal
