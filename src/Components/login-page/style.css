@@ -14,7 +14,7 @@
   top: 150px;
 }
 
-.first {
+.first101 {
   background-image: url("https://image.freepik.com/free-vector/team-work-building-business-puzzle-illustration-people-character-together-idea-success-strategy-partnership_121223-1016.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -24,36 +24,36 @@
   height: auto;
 }
 
-.linkedin {
+.linkedin101 {
   position: relative;
   left: 25px;
   top: 20px;
   font-size: 19px;
 }
 
-.in {
+.in101 {
   border-width: 10px;
   color: #fff;
   background: blue;
   font-weight: bold;
 }
 
-.second {
+.second101 {
   background: #fff;
   border-radius: 12px;
 }
 
-.welcome {
+.welcome101 {
   margin-top: 130px;
   font-size: 23px;
 }
 
-.form-group {
+.sing-form-group {
   padding-top: 8px;
   font-size: 12px;
 }
 
-.form-control {
+.form-signin {
   background: #e3f2fd;
   margin-top: 10px;
   font-size: 9px;
@@ -64,16 +64,16 @@
   caret-color: red;
 }
 
-.form-control:focus {
+.form-signin:focus {
   box-shadow: none;
 }
 
-.forgot {
+.forgot101 {
   padding-top: 7px;
   color: #42a5f5;
 }
 
-.space {
+.space101 {
   padding-top: 28px;
 }
 
@@ -99,7 +99,7 @@
   margin-left: 10px;
 }
 
-.under {
+.under101 {
   font-size: 8px;
   color: #42a5f5;
   padding-top: 40px;
@@ -113,7 +113,7 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .linkedin {
+  .linkedin101 {
     display: none;
   }
 }
