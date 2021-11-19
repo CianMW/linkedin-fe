@@ -170,7 +170,7 @@ export const postTimer = (x) => {
 // DELETE POST
 
 export const deletePost = async (id, fetchFeed) => {
-  const url = `http://localhost:3001/posts/` + id;
+  const url = "https://linked-in-back-end.herokuapp.com/posts/" + id;
 
   console.log(token);
   try {
