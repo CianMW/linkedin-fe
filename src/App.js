@@ -8,7 +8,7 @@ import Home from "./Components/MyFeed/Home";
 import { useState, useEffect } from "react";
 import Search from "./Components/MyFeed/Search";
 import { fetchInfo } from "../src/lib/index.js";
-
+import cookie from "react-cookie"
 // ******************************* Google Auth *********************************
 import GoogleLogin from "react-google-login";
 import Login from "./Components/login-page/Login";
@@ -59,7 +59,12 @@ function App() {
   }
 
   useEffect(() => {
-    parseCookies();
+    const id = new URLSearchParams(window.location.search).get("id")
+if(id) {
+  cookie.set("user_id", id)
+  parseCookies()
+}
+   // parseCookies();
     console.log(`=================== COOKISE ===================`);
     console.log(authorizedCookie);
     console.log(`=================== COOKISE ===================`);
