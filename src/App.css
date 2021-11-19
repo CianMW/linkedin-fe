@@ -1022,3 +1022,12 @@
   background-color: rgb(224, 224, 224);
   border-color: transparent;
 }
+
+
+#removeTextDecoration {
+  text-decoration: none !important;
+}
+
+.changeTextSize{
+  font-size: small;
+}
