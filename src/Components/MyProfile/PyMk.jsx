@@ -5,7 +5,7 @@ import dotenv from "dotenv/config"
 
 
 
-const PyMk = ({ refresh, setRefresh}) => {
+const PyMk = ({ refresh, setRefresh, currentUser }) => {
   const [data, setData] = useState([]);
   const myUrl = process.env.REACT_APP_URL +`users/`;
 
@@ -13,11 +13,12 @@ const PyMk = ({ refresh, setRefresh}) => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchInfo(myUrl);
-      setData(data.getAllUsers);
-      console.log(data.getAllUsers);
+      const filteredData = await data.getAllUsers.filter(user => user._id !== currentUser._id)
+      setData(filteredData);
+      console.log(filteredData);
     };
     fetchData();
-  }, []);
+  }, [currentUser]);
 
   console.log(`hey it's me`, data);
 

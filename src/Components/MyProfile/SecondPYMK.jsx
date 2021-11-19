@@ -5,7 +5,7 @@ import { Accordion, Card, Button} from "react-bootstrap";
 import dotenv from "dotenv/config"
 
 
-const SecondPYMK = () => {
+const SecondPYMK = ( currentUser) => {
   const [data, setData] = useState([]);
   const [toggled, setToggled] = useState(false)
   const myUrl = process.env.REACT_APP_URL +`users/`;
@@ -16,8 +16,9 @@ const SecondPYMK = () => {
     const fetchData = async () => {
       console.log("HERE IS THE ENV !!!", process.env.REACT_APP_URL)
       const data = await fetchInfo(myUrl);
-      setData(data.getAllUsers);
-      console.log(data.getAllUsers);
+      const filteredData = data.getAllUsers.filter(user => user._id !== currentUser._id)
+      setData(filteredData);
+      console.log(filteredData);
     };
     fetchData();
   }, []);

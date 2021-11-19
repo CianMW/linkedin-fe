@@ -187,11 +187,11 @@ const MyProfile = ({ currentUser }) => {
                         <div>
                           <ul className="ul">
                             {/*Insert generated content here!!*/}
-                            <PyMk refresh={refresh} setRefresh={setRefresh} />
+                            <PyMk refresh={refresh} setRefresh={setRefresh} currentUser={currentUser}/>
                           </ul>
                         </div>
                       </div>
-                      <SecondPYMK />
+                      <SecondPYMK currentUser={currentUser} />
                     </div>
                   </div>
                   {/*People also viewed section END */}
@@ -204,11 +204,11 @@ const MyProfile = ({ currentUser }) => {
                         <div>
                           <ul className="ul">
                             {/*Insert generated content here!!*/}
-                            <PyMk />
+                            <PyMk currentUser={currentUser} />
                           </ul>
                         </div>
                       </div>
-                      <SecondPYMK />
+                      <SecondPYMK currentUser={currentUser} />
                     </div>
                   </div>
                 </div>
