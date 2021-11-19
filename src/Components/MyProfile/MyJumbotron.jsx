@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import ProfileSettings from "./ProfileSettings";
 import { useState } from "react";
 import dotenv from "dotenv/config"
+import DownloadPdf from "./DownloadPdf";
 
 const MyJumbotron = ({ identification, user, setRefresh, refresh, currentUser }) => {
   console.log("WTF HAHAHAH", user);
@@ -67,14 +68,14 @@ const MyJumbotron = ({ identification, user, setRefresh, refresh, currentUser })
             )}
           </Col>
           <Col className=" d-flex-row text-right justify-content-right">
-            {identification === currentUser._id ? (
-              // this renders a "pencil button". when clicked it calls a modal to edit the user 
+            {identification === currentUser._id ? (<>
+              <DownloadPdf currentUser={currentUser}/>
               <ProfileSettings
                 user={user}
                 setRefresh={setRefresh}
                 refresh={refresh}
               />
-            ) : (
+            </>) : (
               <></>
             )}
             <div className="d-flex eduandexp">
