@@ -5,7 +5,7 @@ import AddFeedUsers from "./AddFeedUsers";
 import TopCourses from "./TopCourses";
 import CompactFooter from "./CompactFooter";
 
-const SideBarRight = () => {
+const SideBarRight = ({currentUser}) => {
   const popover = (
     <Popover placement="top" id="popover-basic">
       <Popover.Content>
@@ -29,7 +29,7 @@ const SideBarRight = () => {
 
           <ul className="ul">
             {/* <PyMk /> */}
-            <AddFeedUsers />
+            <AddFeedUsers currentUser={currentUser} />
           </ul>
           <div className="view-all-recommendations"><p >View all recommendations <i className="bi bi-arrow-right"></i></p></div>
           

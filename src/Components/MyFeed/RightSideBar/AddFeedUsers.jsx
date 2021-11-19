@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { Accordion, Card } from "react-bootstrap";
 
-const AddFeedUsers = (props) => {
+const AddFeedUsers = ({ currentUser }) => {
   const [data, setData] = useState([]);
   const [randomSelection, setRandomSelection] = useState([]);
   const myUrl = process.env.REACT_APP_URL +"users/";
@@ -12,13 +12,14 @@ const AddFeedUsers = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const userData = await fetchInfo(myUrl);
-      setData(userData.getAllUsers);
-      randomize(userData.getAllUsers);
+      const withoutCurrentUser = await userData.getAllUsers.filter(user => user._id !== currentUser._id)
+      setData(withoutCurrentUser);
+      randomize(withoutCurrentUser);
 
       // console.log(userData.getAllUsers);
     };
     fetchData();
-  }, []);
+  }, [currentUser]);
 
   // console.log(`FeedUsers!!`, data);
 

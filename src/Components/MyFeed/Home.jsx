@@ -53,7 +53,7 @@ const Home = ({ currentUser }) => {
           </Col>
           {/*----------------------- Sidebar-Right Section -------------------*/}
           <Col className="p-0" md={3}>
-            <SideBarRight />
+            <SideBarRight currentUser={currentUser}/>
           </Col>
         </Row>
       </Container>

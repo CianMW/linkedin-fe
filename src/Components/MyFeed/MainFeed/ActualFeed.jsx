@@ -28,9 +28,10 @@ const ActualFeed = ({ reversedFeed, fetchFeed, token, currentUser }) => {
       method: "PUT"
     })
     if(response.ok) {
+         fetchFeed()
       const newResponse = await response.json()
       console.log(newResponse)
-      fetchFeed()
+ 
     } 
 
   }
