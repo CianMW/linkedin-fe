@@ -12,38 +12,38 @@ export default function Login({ isLoggedIn, setIsLoggedIn }) {
           <div className="col-md-10">
             <div className="card card102">
               <div className="row no-gutters">
-                <div className="col-md-4 first">
-                  <div className="linkedin">
+                <div className="col-md-4 first101">
+                  <div className="linkedin101">
                     <span className="no-gutters text-primary font-weight-bold">
                       Linked
                     </span>
-                    <span className="in">in</span>
+                    <span className="in101">in</span>
                   </div>
                 </div>
-                <div className="col-md-6 second pl-4 pr-4">
-                  <h4 className="welcome text-primary">Welcome</h4>
-                  <div className="form-group">
+                <div className="col-md-6 second101 pl-4 pr-4">
+                  <h4 className="welcome101 text-primary">Welcome</h4>
+                  <div className="form-group sing-form-group">
                     {" "}
                     <input
                       type="email number"
                       name="email number"
                       placeholder="Email or Phone"
-                      className="form-control"
+                      className="form-control form-signin"
                     />{" "}
                     <input
                       type="Password"
                       name="Password"
                       placeholder="Password"
-                      className="form-control"
+                      className="form-control form-signin"
                     />
-                    <div className="forgot">
+                    <div className="forgot101">
                       <span>Forgot Password?</span>
                     </div>
                   </div>
                   <div className="col s12 m6 offset-m3 center-align">
                     <a
                       className="btn darken-4 white black-text btn-outline-dark"
-                      href="http://localhost:3001/google"
+                      href="https://linked-in-back-end.herokuapp.com/google/"
                       style={{ textTransform: "none" }}
                     >
                       <div className="left">
@@ -57,7 +57,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn }) {
                       Login with Google
                     </a>
                   </div>
-                  <div className="space">
+                  <div className="space101">
                     {" "}
                     <button
                       type="button"
@@ -74,17 +74,17 @@ export default function Login({ isLoggedIn, setIsLoggedIn }) {
                   </div>
 
                   <div className="row">
-                    <div className="col-sm-4 under">
+                    <div className="col-sm-4 under101">
                       {" "}
                       <span>Copyright Policy</span>
                       <p>User Agreement</p>
                     </div>
-                    <div className="col-sm-3 under">
+                    <div className="col-sm-3 under101">
                       {" "}
                       <span>Privacy Policy</span>
                       <p>Cookie Policy</p>
                     </div>
-                    <div className="col-sm-4 under">
+                    <div className="col-sm-4 under101">
                       {" "}
                       <span>Send Feedback</span>
                       <p>Community Guidelines</p>
@@ -95,7 +95,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn }) {
                   </div>
                 </div>
                 <div className="col-md-2">
-                  <p className="lower">Linkedin © 2020</p>
+                  <p className="lower101">Linkedin © 2020</p>
                 </div>
               </div>
             </div>

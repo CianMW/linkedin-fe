@@ -43,7 +43,7 @@ function App() {
         setIsLoggedIn(true);
 
         const fetchUser = async (id) => {
-          const url = `http://localhost:3001/users/${id}`;
+          const url = `https://linked-in-back-end.herokuapp.com/users/${id}`;
           const data = await fetchInfo(url);
           await setCurrentUser({ ...data.foundUser });
         };
