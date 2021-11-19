@@ -3,7 +3,7 @@ import PutExExp from "./PutExExp";
 import { Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import Modal from "./Modal";
-import { format, parseISO } from 'date-fns';
+import { format, parseISO } from "date-fns";
 import { postTimer } from "../../lib/index.js";
 
 const DisplayExp = ({ user, token, me }) => {

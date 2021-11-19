@@ -10,13 +10,11 @@ import { useParams } from "react-router-dom";
 import ProfileDashboard from "./MyProfile/ProfileDashboard";
 import SecondPYMK from "./MyProfile/SecondPYMK";
 import { areDayPropsEqual } from "@mui/lab/PickersDay/PickersDay";
-import {token , me} from "../lib"
+import { token, me } from "../lib";
 import Activity from "./Activity";
-import dotenv from "dotenv/config"
+import dotenv from "dotenv/config";
 
-
-const MyProfile = ({setCurrentUser}) => {
- 
+const MyProfile = ({ currentUser }) => {
   const params = useParams();
   // let pathname = props.location.pathname;
   // console.log(pathname);
@@ -25,11 +23,11 @@ const MyProfile = ({setCurrentUser}) => {
 
   useEffect(() => {
     const fetchUser = async (id) => {
-      const url = process.env.REACT_APP_URL +`users/${id}`;
+      const url = process.env.REACT_APP_URL + `users/${id}`;
       const data = await fetchInfo(url);
-      console.log(`this are the users`,{ data });
-      setUser({...data.foundUser});
-      setCurrentUser({...data.foundUser});
+      console.log(`this are the users`, { data });
+      setUser({ ...data.foundUser });
+      // setCurrentUser({ ...data.foundUser });
     };
     fetchUser(params.id);
   }, [params.id, refresh]);
@@ -69,13 +67,15 @@ const MyProfile = ({setCurrentUser}) => {
                 </Col>
                 {/*Your Dashboard Section*/}
 
-                {params.id === process.env.REACT_APP_CURRENTUSER ? <ProfileDashboard user={user} /> : <></>}
+                {params.id === currentUser ? (
+                  <ProfileDashboard user={user} />
+                ) : (
+                  <></>
+                )}
 
                 {/*Your Dashboard END*/}
 
                 {/*Activity Section*/}
-                  
-                
 
                 <Col md={12} className="p-0">
                   <div className="section-container mt-3">
@@ -83,7 +83,7 @@ const MyProfile = ({setCurrentUser}) => {
                       <div className="d-flex d-inline-block justify-content-between">
                         <h4>Activity</h4>
 
-                        {params.id === process.env.REACT_APP_CURRENTUSER ? (
+                        {params.id === currentUser ? (
                           <button className="profile-button">
                             Start a post
                           </button>
@@ -165,7 +165,7 @@ const MyProfile = ({setCurrentUser}) => {
                         <div>
                           <ul className="ul">
                             {/*Insert generated content here!!*/}
-                            <PyMk refresh={refresh} setRefresh={setRefresh}/>
+                            <PyMk refresh={refresh} setRefresh={setRefresh} />
                           </ul>
                         </div>
                       </div>
