@@ -18,6 +18,23 @@ const ActualFeed = ({ reversedFeed, fetchFeed, token, currentUser }) => {
   const [smShow, setSmShow] = useState(false);
   const [pic, setPic] = useState(false);
 
+
+
+  const likePost = async (postId) => {
+    let url = process.env.REACT_APP_URL + `posts/${postId}/likes/${currentUser._id}`
+    console.log("LIKE FETCH",url)
+
+    const response = await fetch(url, {
+      method: "PUT"
+    })
+    if(response.ok) {
+      const newResponse = await response.json()
+      console.log(newResponse)
+      fetchFeed()
+    } 
+
+  }
+
   return (
     <>
     <hr className="mt-0" />
@@ -118,9 +135,9 @@ const ActualFeed = ({ reversedFeed, fetchFeed, token, currentUser }) => {
               <Row>
                 <Col className="px-0 actuall-feed-interact">
                   <b>
-                    <button className="btn btn-primary actuall-feed-h5">
+                    <button onClick={e => likePost(elem._id)} className="btn btn-primary actuall-feed-h5">
                       <i className="bi text-muted bi-hand-thumbs-up"></i>&nbsp;{" "}
-                      <span className="text-muted">Like</span>
+                      <span className="text-muted">{elem.likes.length} Likes</span>
                     </button>{" "}
                   </b>
                 </Col>
