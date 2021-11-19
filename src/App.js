@@ -7,6 +7,7 @@ import MyFooter from "./Components/MyFooter";
 import Home from "./Components/MyFeed/Home";
 import { useState, useEffect } from "react";
 import Search from "./Components/MyFeed/Search";
+import { fetchInfo } from "../src/lib/index.js";
 
 // ******************************* Google Auth *********************************
 import GoogleLogin from "react-google-login";
@@ -21,7 +22,6 @@ function App() {
   // ******************************* Google Auth *********************************
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [authorizedGoogleUser, setAuthorizedGoogleUser] = useState(false);
 
   const [authorizedCookie, setAuthorizedCookie] = useState();
 
@@ -37,10 +37,16 @@ function App() {
           list[parts.shift().trim()] = decodeURI(parts.join("="));
         });
 
-      setAuthorizedCookie(list);
       if (list.user_id) {
         console.log(`------ failed`);
+        setAuthorizedCookie(list.user_id);
         setIsLoggedIn(true);
+        const fetchUser = async (id) => {
+          const url = `http://localhost:3001/users/${id}`;
+          const data = await fetchInfo(url);
+          setCurrentUser({ ...data.foundUser });
+        };
+        fetchUser(list.user_id);
       } else {
         console.log(`------ after the failed`);
         setIsLoggedIn(false);
@@ -56,7 +62,7 @@ function App() {
     console.log(authorizedCookie);
     console.log(`=================== COOKISE ===================`);
     // console.log(`i am the currentUser`, currentUser);
-  }, [currentUser]);
+  }, []);
 
   return (
     <div className="App">
@@ -70,9 +76,6 @@ function App() {
                 {...props}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
-                setAuthorizedGoogleUser={setAuthorizedGoogleUser}
-                authorizedGoogleUser={authorizedGoogleUser}
-                setCurrentUser={setCurrentUser}
               />
             )}
           />
@@ -93,7 +96,7 @@ function App() {
             path="/profile/:id"
             exact
             render={(props) => (
-              <MyProfile {...props} setCurrentUser={setCurrentUser} />
+              <MyProfile {...props} currentUser={currentUser} />
             )}
           />
 

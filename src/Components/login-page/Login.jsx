@@ -4,13 +4,7 @@ import GoogleLogin from "react-google-login";
 import { GoogleLogout } from "react-google-login";
 import { useState, useEffect } from "react";
 
-export default function Login({
-  isLoggedIn,
-  setIsLoggedIn,
-  setAuthorizedGoogleUser,
-  authorizedGoogleUser,
-  setCurrentUser,
-}) {
+export default function Login({ isLoggedIn, setIsLoggedIn }) {
   return (
     <div className="box">
       <div className="p-5 card101 container">

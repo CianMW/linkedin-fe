@@ -13,7 +13,7 @@ import { areDayPropsEqual } from "@mui/lab/PickersDay/PickersDay";
 import { token, me } from "../lib";
 import Activity from "./Activity";
 
-const MyProfile = ({ setCurrentUser }) => {
+const MyProfile = ({ currentUser }) => {
   const params = useParams();
   // let pathname = props.location.pathname;
   // console.log(pathname);
@@ -26,7 +26,7 @@ const MyProfile = ({ setCurrentUser }) => {
       const data = await fetchInfo(url);
       console.log(`this are the users`, { data });
       setUser({ ...data.foundUser });
-      setCurrentUser({ ...data.foundUser });
+      // setCurrentUser({ ...data.foundUser });
     };
     fetchUser(params.id);
   }, [params.id, refresh]);
@@ -66,7 +66,7 @@ const MyProfile = ({ setCurrentUser }) => {
                 </Col>
                 {/*Your Dashboard Section*/}
 
-                {params.id === "61944cb42e279cf7d22dd1eb" ? (
+                {params.id === currentUser ? (
                   <ProfileDashboard user={user} />
                 ) : (
                   <></>
@@ -82,7 +82,7 @@ const MyProfile = ({ setCurrentUser }) => {
                       <div className="d-flex d-inline-block justify-content-between">
                         <h4>Activity</h4>
 
-                        {params.id === "me" ? (
+                        {params.id === currentUser ? (
                           <button className="profile-button">
                             Start a post
                           </button>
