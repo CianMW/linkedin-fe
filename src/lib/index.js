@@ -1,16 +1,18 @@
-export const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MThhZDQyYTNhZTFlMzAwMTUwZmZjM2MiLCJpYXQiOjE2MzY0ODgyMzQsImV4cCI6MTYzNzY5NzgzNH0.e1_gaWWn7P8VROpB1TTGwkaUPTrUxhDoJFppEtRt5x0"
-export const me = "618ad42a3ae1e300150ffc3c"
+export const token =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MThhZDQyYTNhZTFlMzAwMTUwZmZjM2MiLCJpYXQiOjE2MzY0ODgyMzQsImV4cCI6MTYzNzY5NzgzNH0.e1_gaWWn7P8VROpB1TTGwkaUPTrUxhDoJFppEtRt5x0";
+export const me = "618ad42a3ae1e300150ffc3c";
 // FETCH USER PROFILES
 export const fetchInfo = async (url) => {
   try {
     const response = await fetch(url, {
       headers: {
-        Authorization:token,
+        Authorization: token,
       },
+      // credentials: true,
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(`Here is the USERDATA`, data);
+      // console.log(`Here is the USERDATA`, data);
       return data;
     } else {
       console.log(`Ooops we got an error while fetching response`);
@@ -20,14 +22,13 @@ export const fetchInfo = async (url) => {
   }
 };
 
-
 // FETCH USER EXPERIENCES
 
 export const fetchUserExp = async (url) => {
   try {
     const response = await fetch(url, {
       headers: {
-        Authorization:token,
+        Authorization: token,
       },
     });
     if (response.ok) {
@@ -50,7 +51,7 @@ export const postUserExp = async (url, e, exp) => {
       method: "POST",
       body: JSON.stringify(exp),
       headers: {
-        Authorization:token,
+        Authorization: token,
       },
     });
     if (response.ok) {
@@ -71,7 +72,7 @@ export const fetchSinglUserExp = async (url) => {
   try {
     const response = await fetch(url, {
       headers: {
-        Authorization:token,
+        Authorization: token,
       },
     });
     if (response.ok) {
@@ -109,9 +110,6 @@ export const fetchSinglUserExp = async (url) => {
 //   }
 // };
 
-
-
-
 // DELETE SINGLE EXPERIENCE
 
 export const deleteSingleUserExp = async (user, expId, fetchExp, setLgShow) => {
@@ -121,7 +119,7 @@ export const deleteSingleUserExp = async (user, expId, fetchExp, setLgShow) => {
     const response = await fetch(url, {
       method: "DELETE",
       headers: {
-        Authorization:token,
+        Authorization: token,
       },
     });
     if (response.ok) {
@@ -140,7 +138,7 @@ export const deleteSingleUserExp = async (user, expId, fetchExp, setLgShow) => {
 
 // USER PROFILES
 // FETCH
-// date 
+// date
 
 export const postTimer = (x) => {
   const postedDateISO = x;
@@ -151,13 +149,13 @@ export const postTimer = (x) => {
   const minutes = parseInt(milliseconds / 1000 / 60);
   const hours = parseInt(minutes / 60);
   const days = parseInt(hours / 24);
-  const weeks = parseInt(days / 7)
+  const weeks = parseInt(days / 7);
   let date;
 
   if (weeks > 0) {
     //console.log(${days}d);
-    date = `${weeks}w`
-   } else if (days > 0) {
+    date = `${weeks}w`;
+  } else if (days > 0) {
     date = `${days}d`;
   } else if (days == 0 && hours >= 1) {
     //console.log(${hours}hr);
@@ -171,22 +169,21 @@ export const postTimer = (x) => {
 
 // DELETE POST
 
-export const deletePost = async (id , fetchFeed) => {
-  const url = `http://localhost:3001/posts/`+id;
+export const deletePost = async (id, fetchFeed) => {
+  const url = `http://localhost:3001/posts/` + id;
 
-  console.log(token)
+  console.log(token);
   try {
     const response = await fetch(url, {
       method: "DELETE",
       headers: {
-        Authorization:token,
+        Authorization: token,
       },
     });
     if (response.ok) {
-        fetchFeed()
+      fetchFeed();
 
       console.log("Deleted successfully");
-
     } else {
       alert("Ooops we got an error while fetching response");
     }
@@ -194,4 +191,3 @@ export const deletePost = async (id , fetchFeed) => {
     console.error(error);
   }
 };
-

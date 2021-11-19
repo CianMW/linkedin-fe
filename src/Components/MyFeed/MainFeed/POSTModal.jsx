@@ -30,10 +30,10 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
             formData.append("image", photo);
 
             const response = await fetch(
-              process.env.REACT_APP_URL +`posts/${post._id}`,
+              process.env.REACT_APP_URL + `posts/${post._id}`,
               {
                 method: "POST",
-                body: formData
+                body: formData,
               }
             );
             if (response.ok) {
@@ -64,7 +64,7 @@ const POSTModal = ({ smShow, setSmShow, fetchFeed, token }) => {
 
   useEffect(() => {
     setText(text);
-    console.log(text);
+    // console.log(text);
   }, [text]);
 
   //   const postPhoto = async(id) => {

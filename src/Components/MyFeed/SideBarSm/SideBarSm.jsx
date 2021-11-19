@@ -1,13 +1,12 @@
-import FirstSideBar from "./FirstSideBar"
-import SecondSideBar from "./SecondSideBar"
-
+import FirstSideBar from "./FirstSideBar";
+import SecondSideBar from "./SecondSideBar";
 
 const SideBarSm = ({ user }) => {
-  console.log('i am the user', user)
+  // console.log('i am the user', user)
   return (
     <>
       {/*-------First SideBarSm Section------*/}
-      <FirstSideBar user={user}/>
+      <FirstSideBar user={user} />
       {/*-------Second SideBarSm Section------*/}
       <SecondSideBar />
     </>
