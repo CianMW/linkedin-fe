@@ -3,10 +3,10 @@ import PutExExp from "./PutExExp";
 import { Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import Modal from "./Modal";
-import { format, parseISO } from 'date-fns';
+import { format, parseISO } from "date-fns";
 import { postTimer } from "../../lib/index.js";
 
-const DisplayExp = ({ user, token, me }) => {
+const DisplayExp = ({ user, token, me, currentUser }) => {
   console.log(user);
 
   const [data, setData] = useState([]);
@@ -17,7 +17,7 @@ const DisplayExp = ({ user, token, me }) => {
   const fetchExp = async () => {
     try {
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${user._id}/experiences`,
+        process.env.REACT_APP_URL +`users/${user._id}/experience`,
         {
           headers: {
             Authorization: token,
@@ -25,8 +25,9 @@ const DisplayExp = ({ user, token, me }) => {
         }
       );
       const exp = await response.json();
-
-      setData(exp);
+      console.log("THIS IS TH FRIG",exp, user)
+        if(exp.length > -1){ setData(exp);}
+ 
     } catch (e) {
       console.log(e);
     }
@@ -39,7 +40,7 @@ const DisplayExp = ({ user, token, me }) => {
   console.log();
   return (
     <>
-      {user._id === me && (
+      {user._id === currentUser._id && (
         <Modal
           user={user._id}
           fetchExp={fetchExp}
@@ -49,9 +50,10 @@ const DisplayExp = ({ user, token, me }) => {
           setExpId={setExpId}
         />
       )}
+      
       {data.map((exp) => (
         <>
-          {user._id === me && (
+          {user._id === currentUser._id && (
             <ExpPicModal
               expId={exp._id}
               userId={user._id}
@@ -75,7 +77,7 @@ const DisplayExp = ({ user, token, me }) => {
               <br />
               <p>{exp.description}</p>
             </Col>
-            {user._id === me && (
+            {user._id === currentUser._id && (
               <Col md={1}>
                 <button
                   onClick={() => {

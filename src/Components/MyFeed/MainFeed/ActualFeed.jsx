@@ -11,8 +11,10 @@ import { format, parseISO } from 'date-fns';
 import {Link} from "react-router-dom"
 import { postTimer } from "../../../lib/index.js";
 import { deletePost, me } from "../../../lib";
+import dotenv from 'dotenv'
 
-const ActualFeed = ({ reversedFeed, fetchFeed, token }) => {
+
+const ActualFeed = ({ reversedFeed, fetchFeed, token, currentUser }) => {
   const [smShow, setSmShow] = useState(false);
   const [pic, setPic] = useState(false);
 
@@ -29,7 +31,9 @@ const ActualFeed = ({ reversedFeed, fetchFeed, token }) => {
                 {/* <h4 className="text-right">...</h4> */}
                 <h6 style={{fontSize:"12px"}} >Posted {postTimer(elem.updatedAt)} ago</h6>
                 <Col className="text-right">
-                  {elem.user._id == me && (
+
+                  {/* .env was not working for the hardcoded user ID below */}
+                  {elem.user._id === currentUser._id && (
                     <>
                       <Button
                         variant="light"
@@ -70,6 +74,7 @@ const ActualFeed = ({ reversedFeed, fetchFeed, token }) => {
                         setSmShow={setSmShow}
                         id={elem._id}
                         token={token}
+                        element={elem}
                       />
                       <POSTPic
                         fetchFeed={fetchFeed}

@@ -2,17 +2,19 @@ import { useState, useEffect } from "react";
 import { fetchInfo } from "../../lib";
 import { Link } from "react-router-dom";
 import { Accordion, Card, Button} from "react-bootstrap";
+import dotenv from "dotenv/config"
 
 
 const SecondPYMK = () => {
   const [data, setData] = useState([]);
   const [toggled, setToggled] = useState(false)
-  const myUrl = `http://localhost:3001/users/`;
+  const myUrl = process.env.REACT_APP_URL +`users/`;
 
   //FETCHES ALL THE USERS and sets the data
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("HERE IS THE ENV !!!", process.env.REACT_APP_URL)
       const data = await fetchInfo(myUrl);
       setData(data.getAllUsers);
       console.log(data.getAllUsers);

@@ -4,12 +4,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProfileSettings from "./ProfileSettings";
 import { useState } from "react";
+import dotenv from "dotenv/config"
 
-const MyJumbotron = ({ identification, user, setRefresh, refresh }) => {
+const MyJumbotron = ({ identification, user, setRefresh, refresh, currentUser }) => {
   console.log("WTF HAHAHAH", user);
   return (
     <>
       <Jumbotron
+      style={{backgroundImage: `url(${user.backgroundImage})`}}
         fluid
         className="rounded-lg bg-white p-0"
         id="jumbotron-banner"
@@ -41,7 +43,7 @@ const MyJumbotron = ({ identification, user, setRefresh, refresh }) => {
                 More
               </Button>
             </p>
-            {identification === "me" ? (
+            {identification === currentUser._id ? (
               <div className="opened-to-work text-left p-2">
                 <div className="mb-0">
                   <b className="text-dark jumbo-a">
@@ -65,7 +67,8 @@ const MyJumbotron = ({ identification, user, setRefresh, refresh }) => {
             )}
           </Col>
           <Col className=" d-flex-row text-right justify-content-right">
-            {identification === "me" ? (
+            {identification === currentUser._id ? (
+              // this renders a "pencil button". when clicked it calls a modal to edit the user 
               <ProfileSettings
                 user={user}
                 setRefresh={setRefresh}

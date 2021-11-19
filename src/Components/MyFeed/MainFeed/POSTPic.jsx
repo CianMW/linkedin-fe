@@ -12,15 +12,15 @@ const POSTPic = ({ fetchFeed, pic, setPic, id, token }) => {
       setImage(e.target.files[0]);
     }
   };
-console.log(`this is the id`,id)
+  // console.log(`this is the id`, id);
   const submitImage = async (e) => {
     e.preventDefault();
     try {
       let formData = new FormData();
-      formData.append("post", image);
+      formData.append("image", image);
 
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/${id}/`,
+        process.env.REACT_APP_URL +`posts/${id}/`,
 
         {
           method: "POST",
@@ -31,7 +31,7 @@ console.log(`this is the id`,id)
         }
       );
       if (response.ok) {
-        console.log(response);
+        // console.log(response);
 
         fetchFeed();
         setPic(false);
@@ -46,9 +46,7 @@ console.log(`this is the id`,id)
     }
   };
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>

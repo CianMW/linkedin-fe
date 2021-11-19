@@ -3,26 +3,30 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 
+const PUTModal = ({
+  fetchFeed,
+  reversedFeed,
+  smShow,
+  setSmShow,
+  id,
+  token,
+  element,
+}) => {
+  const [text, setText] = useState({ text: element.text });
 
-const PUTModal = ({ fetchFeed, reversedFeed, smShow, setSmShow, id, token}) => {
-  const [text, setText] = useState({ text: "" });
-  
-  console.log('i am the id', id)
+  console.log("i am the id", id);
+  console.log("This is the update TEXT", text);
 
   const updatePost = async (e) => {
     e.preventDefault(e);
     try {
-      const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/${id}`,
-        {
-          method: "PUT",
-          body: JSON.stringify(text),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:token,
-          },
-        }
-      );
+      const response = await fetch(process.env.REACT_APP_URL + `posts/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(text),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         console.log(response);
         console.log("Update successfully");
@@ -42,7 +46,7 @@ const PUTModal = ({ fetchFeed, reversedFeed, smShow, setSmShow, id, token}) => {
 
   useEffect(() => {
     setText(text);
-    console.log(text);
+    // console.log(text);
   }, [text]);
 
   return (

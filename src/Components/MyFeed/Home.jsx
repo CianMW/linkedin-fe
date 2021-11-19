@@ -7,20 +7,21 @@ import { useState, useEffect } from "react";
 import { fetchInfo, me } from "../../lib";
 // import { useParams } from "react-router-dom";
 
-const Home = () => {
+const Home = ({currentUser}) => {
   // const params = useParams();
 
   const [user, setUser] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    const fetchUser = async (id) => {
-      const url = `http://localhost:3001/users/${id}`;
+    const fetchUser = async (user) => {
+      console.log("THIS IS THE CURRENT USER IN HOME ",currentUser)
+      const url = process.env.REACT_APP_URL +`users/${user._id}`;
       const data = await fetchInfo(url);
       console.log({ data });
       await setUser({...data.foundUser});
     };
-    fetchUser("61944cb42e279cf7d22dd1eb");
+    fetchUser(currentUser);
   }, []);
 
   return (
@@ -46,7 +47,7 @@ const Home = () => {
           </Col>
           {/*----------------------- Main Feed Section -----------------------*/}
           <Col md={6}>
-            <MainFeedSection user={user} />
+            <MainFeedSection user={user} currentUser={currentUser} />
           </Col>
           {/*----------------------- Sidebar-Right Section -------------------*/}
           <Col className="p-0" md={3}>

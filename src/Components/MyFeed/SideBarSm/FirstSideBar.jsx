@@ -12,7 +12,7 @@ const FirstSideBar = ({ user }) => {
   return (
     <div className="row mb-0">
       <Container>
-        <Jumbotron id="SideBarHeader" fluid className="jumboSidebar pb-1 pt-4">
+        <Jumbotron id="SideBarHeader" style={{backgroundImage: `url(${user.backgroundImage})`}} fluid className="jumboSidebar pb-1 pt-4">
           <Row className="justify-content-center SideBarSm-row ">
             <Col>
               <img
@@ -29,7 +29,7 @@ const FirstSideBar = ({ user }) => {
             <Col className="text-left ">
               <div>
                 <Link
-                  to={"/profile/me"}
+                  to={`/profile/${user._id}`}
                   className="text-center text-dark d-block"
                   style={{
                     fontSize: "18px",
