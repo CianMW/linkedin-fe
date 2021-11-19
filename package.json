@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node":"16.13.0"
+    "node": "16.13.0"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
-    "@heroku/buildpack-registry": "^1.0.1",
     "@mui/lab": "^5.0.0-alpha.50",
     "@mui/material": "^5.0.3",
     "@testing-library/jest-dom": "^5.14.1",
