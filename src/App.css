@@ -376,12 +376,12 @@
   margin-left: -12px;
 }
 
-/* #SideBarHeader {
-  background-image: url("https://wallpaperaccess.com/full/1398313.jpg");
+ #SideBarHeader {
+  /* background-image: url("https://wallpaperaccess.com/full/1398313.jpg"); */
   background-position: top;
   background-repeat: no-repeat;
-  background-size: 100% 15%;
-} */
+  background-size: 100% 25%;
+} 
 
 /*------------------------------Jumbotron CSS------------------------------*/
 .jumbobtn-open-to {

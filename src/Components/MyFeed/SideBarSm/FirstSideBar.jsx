@@ -12,7 +12,7 @@ const FirstSideBar = ({ user }) => {
   return (
     <div className="row mb-0">
       <Container>
-        <Jumbotron id="SideBarHeader" fluid className="jumboSidebar pb-1 pt-4">
+        <Jumbotron id="SideBarHeader" style={{backgroundImage: `url(${user.backgroundImage})`}} fluid className="jumboSidebar pb-1 pt-4">
           <Row className="justify-content-center SideBarSm-row ">
             <Col>
               <img
