@@ -10,26 +10,30 @@ import { useParams } from "react-router-dom";
 import ProfileDashboard from "./MyProfile/ProfileDashboard";
 import SecondPYMK from "./MyProfile/SecondPYMK";
 import { areDayPropsEqual } from "@mui/lab/PickersDay/PickersDay";
-import {token , me} from "../lib"
+import { token, me } from "../lib";
 import Activity from "./Activity";
-import dotenv from "dotenv/config"
+import dotenv from "dotenv/config";
+import DownloadCSV from "./MyProfile/DownloadCSV";
 
-
-const MyProfile = ({setCurrentUser}) => {
- 
+const MyProfile = ({ currentUser }) => {
   const params = useParams();
   // let pathname = props.location.pathname;
   // console.log(pathname);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(false);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchUser = async (id) => {
-      const url = process.env.REACT_APP_URL +`users/${id}`;
+      const url = process.env.REACT_APP_URL + `users/${id}`;
       const data = await fetchInfo(url);
-      console.log(`this are the users`,{ data });
-      setUser({...data.foundUser});
-      setCurrentUser({...data.foundUser});
+      console.log(`this are the users`, { data });
+      if (data.foundUser._id === currentUser._id) {
+        setUser(currentUser);
+      } else {
+        setUser({ ...data.foundUser });
+      }
+
+      // setCurrentUser({ ...data.foundUser });
     };
     fetchUser(params.id);
   }, [params.id, refresh]);
@@ -64,18 +68,21 @@ const MyProfile = ({setCurrentUser}) => {
                       user={user}
                       setRefresh={setRefresh}
                       refresh={refresh}
+                      currentUser={currentUser}
                     />
                   )}
                 </Col>
                 {/*Your Dashboard Section*/}
 
-                {params.id === process.env.REACT_APP_CURRENTUSER ? <ProfileDashboard user={user} /> : <></>}
+                {params.id === currentUser._id ? (
+                  <ProfileDashboard user={user} />
+                ) : (
+                  <></>
+                )}
 
                 {/*Your Dashboard END*/}
 
                 {/*Activity Section*/}
-                  
-                
 
                 <Col md={12} className="p-0">
                   <div className="section-container mt-3">
@@ -83,7 +90,7 @@ const MyProfile = ({setCurrentUser}) => {
                       <div className="d-flex d-inline-block justify-content-between">
                         <h4>Activity</h4>
 
-                        {params.id === process.env.REACT_APP_CURRENTUSER ? (
+                        {params.id === currentUser._id ? (
                           <button className="profile-button">
                             Start a post
                           </button>
@@ -93,7 +100,8 @@ const MyProfile = ({setCurrentUser}) => {
                       </div>
                       <p className="text-muted">11 followers</p>
                     </div>
-                    <Activity user={user} />
+                    {user && <Activity currentUser={currentUser} user={user} />}
+
                     {/* <div>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -112,8 +120,19 @@ const MyProfile = ({setCurrentUser}) => {
                     <div className="d-flex d-inline-block justify-content-between">
                       <h4>Experience</h4>
                     </div>
+                    {params.id === currentUser._id && (
+                      <div>
+                        <DownloadCSV user={user} />
+                      </div>
+                    )}
+
                     <div className="position-relative">
-                      <DisplayExp user={user} token={token} me={me} />
+                      <DisplayExp
+                        user={user}
+                        currentUser={currentUser}
+                        token={token}
+                        me={me}
+                      />
                     </div>
                   </div>
                 </Col>
@@ -136,22 +155,25 @@ const MyProfile = ({setCurrentUser}) => {
             <Row>
               <Container fluid>
                 {/*edit section right column*/}
-                <div className="section-container pt-0 pb-0 list-group list-group-flush">
-                  <EditSettingsRightBar />
-                </div>
-                {/*edit section right column END*/}
-
-                {/* ad section */}
-                <div className="mt-3 profile-ad list-group">
+                {params.id === currentUser._id ? (
+                  <div className="section-container pt-0 pb-0 list-group list-group-flush">
+                    <EditSettingsRightBar />
+                  </div>
+                ): (
+        
+                <div className="mt-3 profile-ad list-group ">
                   <div className="list-group-item  p-0">
                     <a href="https://www.linkedin.com/jobs/?trk=consumer_jobs_global_fallback">
-                      <img
-                        src="https://static-exp1.licdn.com/scds/common/u/images/promo/ads/li_evergreen_jobs_ad_300x250_v1.jpg"
-                        alt=""
+                      <img style={{width: "330px", height: "250px"}}
+                        // src="https://static-exp1.licdn.com/scds/common/u/images/promo/ads/li_evergreen_jobs_ad_300x250_v1.jpg"
+                        src="https://i.guim.co.uk/img/media/80b827ae951f33027e447757237874802796ae0b/768_869_5646_3613/master/5646.jpg?width=700&quality=85&auto=format&fit=max&s=7d7ed7711d0d33e7f2361536cef3146a"
+                 
                       />
-                    </a>
+                     </a>
                   </div>
-                </div>
+                 </div> 
+                )
+}
                 {/* ad section */}
 
                 {/*People also viewed section */}
@@ -165,7 +187,7 @@ const MyProfile = ({setCurrentUser}) => {
                         <div>
                           <ul className="ul">
                             {/*Insert generated content here!!*/}
-                            <PyMk refresh={refresh} setRefresh={setRefresh}/>
+                            <PyMk refresh={refresh} setRefresh={setRefresh} />
                           </ul>
                         </div>
                       </div>

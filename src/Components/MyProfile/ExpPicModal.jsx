@@ -16,31 +16,23 @@ const POSTPic = ({ expId, userId, picExp, setPicExp }) => {
 
   const submitImage = async (e) => {
     e.preventDefault();
+    console.log("FUCK", userId, expId)
     try {
       let formData = new FormData();
       formData.append("experience", imageExp);
 
       const response = await fetch(
-        process.env.REACT_APP_URL +`users/${userId}/experience/${expId}/upload`,
+        process.env.REACT_APP_URL +`users/${userId}/experience/${expId}/imageUpload`,
 
         {
-          method: "POST",
-          body: formData,
-          headers: {
-            Authorization: token,
-          },
+          method: "PUT",
+          body: formData
         }
       );
       if (response.ok) {
-        console.log(response);
-        
-
-
-      
+        console.log(response)
         setPicExp(false);
       } else {
-        console.log();
-
         console.log(`wow... that wasn't supposed to happen... Error`);
         alert(`Woops we lost your data in the void .. try refreshing`);
       }

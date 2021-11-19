@@ -40,6 +40,10 @@
   }
 }
 
+/*------------------------------SINGIN BUTTON CSS-----------------------------*/
+#google-signin {
+  margin: 10px;
+}
 /*------------------------------NavBar CSS-----------------------------*/
 
 .darknavicon {
@@ -376,12 +380,12 @@
   margin-left: -12px;
 }
 
-#SideBarHeader {
-  background-image: url("https://wallpaperaccess.com/full/1398313.jpg");
+ #SideBarHeader {
+  /* background-image: url("https://wallpaperaccess.com/full/1398313.jpg"); */
   background-position: top;
   background-repeat: no-repeat;
-  background-size: 100% 15%;
-}
+  background-size: 100% 25%;
+} 
 
 /*------------------------------Jumbotron CSS------------------------------*/
 .jumbobtn-open-to {
@@ -839,7 +843,7 @@
 }
 
 #jumbotron-banner {
-  background-image: url("https://wallpaperaccess.com/full/1398313.jpg");
+  /* background-image: url("https://wallpaperaccess.com/full/1398313.jpg"); */
   background-position: top;
   background-repeat: no-repeat;
   background-size: 100% 37%;
@@ -1021,4 +1025,13 @@
   border: none;
   background-color: rgb(224, 224, 224);
   border-color: transparent;
+}
+
+
+#removeTextDecoration {
+  text-decoration: none !important;
+}
+
+.changeTextSize{
+  font-size: small;
 }

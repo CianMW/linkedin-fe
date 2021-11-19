@@ -12,7 +12,7 @@ const POSTPic = ({ fetchFeed, pic, setPic, id, token }) => {
       setImage(e.target.files[0]);
     }
   };
-console.log(`this is the id`,id)
+  // console.log(`this is the id`, id);
   const submitImage = async (e) => {
     e.preventDefault();
     try {
@@ -31,7 +31,7 @@ console.log(`this is the id`,id)
         }
       );
       if (response.ok) {
-        console.log(response);
+        // console.log(response);
 
         fetchFeed();
         setPic(false);
@@ -46,9 +46,7 @@ console.log(`this is the id`,id)
     }
   };
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>

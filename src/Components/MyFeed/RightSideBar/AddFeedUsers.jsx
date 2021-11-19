@@ -4,12 +4,6 @@ import { Link } from "react-router-dom";
 
 import { Accordion, Card } from "react-bootstrap";
 
-
-
-
-
-
-
 const AddFeedUsers = (props) => {
   const [data, setData] = useState([]);
   const [randomSelection, setRandomSelection] = useState([]);
@@ -19,32 +13,30 @@ const AddFeedUsers = (props) => {
     const fetchData = async () => {
       const userData = await fetchInfo(myUrl);
       setData(userData.getAllUsers);
-      randomize(userData.getAllUsers)
+      randomize(userData.getAllUsers);
 
-      console.log(userData.getAllUsers);
+      // console.log(userData.getAllUsers);
     };
     fetchData();
   }, []);
 
-  console.log(`FeedUsers!!`, data);
+  // console.log(`FeedUsers!!`, data);
 
-  console.log(randomSelection);
-
+  // console.log(randomSelection);
 
   const randomize = async (userData) => {
-      let selection = []
+    let selection = [];
     for (let i = 0; i < 3; i++) {
       let randomInt = Math.floor(Math.random() * userData.length);
       const currentUser = userData[randomInt];
-         selection.push(currentUser)
-      console.log("3 Random Users", randomSelection);
+      selection.push(currentUser);
+      // console.log("3 Random Users", randomSelection);
     }
-    setRandomSelection(selection)
+    setRandomSelection(selection);
     return;
   };
 
- 
- return (
+  return (
     <>
       {data && randomSelection ? (
         randomSelection.map((person) => (

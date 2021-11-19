@@ -91,10 +91,10 @@ const ModalPop = ({ user, fetchExp, lgShow, setLgShow, expId, setExpId }) => {
         formData.append("image", upload );
   
         const response = await fetch(
-          process.env.REACT_APP_URL +`users/${userId}/experience/${expId}/upload`,
+          process.env.REACT_APP_URL +`users/${userId}/experience/${expId}/imageUpload`,
   
           {
-            method: "POST",
+            method: "PUT",
             body: formData,
             headers: {
               Authorization: token,

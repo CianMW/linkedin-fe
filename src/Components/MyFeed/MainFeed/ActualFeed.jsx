@@ -14,7 +14,7 @@ import { deletePost, me } from "../../../lib";
 import dotenv from 'dotenv'
 
 
-const ActualFeed = ({ reversedFeed, fetchFeed, token }) => {
+const ActualFeed = ({ reversedFeed, fetchFeed, token, currentUser }) => {
   const [smShow, setSmShow] = useState(false);
   const [pic, setPic] = useState(false);
 
@@ -33,7 +33,7 @@ const ActualFeed = ({ reversedFeed, fetchFeed, token }) => {
                 <Col className="text-right">
 
                   {/* .env was not working for the hardcoded user ID below */}
-                  {elem.user._id === process.env.REACT_APP_CURRENTUSER && (
+                  {elem.user._id === currentUser._id && (
                     <>
                       <Button
                         variant="light"
