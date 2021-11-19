@@ -11,6 +11,7 @@ const MyJumbotron = ({ identification, user, setRefresh, refresh }) => {
   return (
     <>
       <Jumbotron
+      style={{backgroundImage: `url(${user.backgroundImage})`}}
         fluid
         className="rounded-lg bg-white p-0"
         id="jumbotron-banner"

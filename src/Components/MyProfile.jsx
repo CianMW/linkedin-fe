@@ -12,13 +12,15 @@ import SecondPYMK from "./MyProfile/SecondPYMK";
 import { areDayPropsEqual } from "@mui/lab/PickersDay/PickersDay";
 import { token, me } from "../lib";
 import Activity from "./Activity";
-import dotenv from "dotenv/config";
+import dotenv from "dotenv/config"
+import DownloadCSV from "./MyProfile/DownloadCSV";
+
 
 const MyProfile = ({ currentUser }) => {
   const params = useParams();
   // let pathname = props.location.pathname;
   // console.log(pathname);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(false);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
@@ -93,7 +95,8 @@ const MyProfile = ({ currentUser }) => {
                       </div>
                       <p className="text-muted">11 followers</p>
                     </div>
-                    <Activity user={user} />
+                    {user && <Activity user={user} />}
+                   
                     {/* <div>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -111,6 +114,9 @@ const MyProfile = ({ currentUser }) => {
                   <div className="section-container mt-3">
                     <div className="d-flex d-inline-block justify-content-between">
                       <h4>Experience</h4>
+                    </div>
+                    <div>
+                      <DownloadCSV user={user} />
                     </div>
                     <div className="position-relative">
                       <DisplayExp user={user} token={token} me={me} />
