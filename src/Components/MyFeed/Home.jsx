@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { fetchInfo, me } from "../../lib";
 // import { useParams } from "react-router-dom";
 
-const Home = ({currentUser}) => {
+const Home = ({ currentUser }) => {
   // const params = useParams();
 
   const [user, setUser] = useState([]);
@@ -15,14 +15,16 @@ const Home = ({currentUser}) => {
 
   useEffect(() => {
     const fetchUser = async (user) => {
-      console.log("THIS IS THE CURRENT USER IN HOME ",currentUser)
-      const url = process.env.REACT_APP_URL +`users/${user._id}`;
+      console.log("THIS IS THE CURRENT USER IN HOME ", currentUser);
+      const url = process.env.REACT_APP_URL + `users/${user._id}`;
       const data = await fetchInfo(url);
       console.log({ data });
-      await setUser({...data.foundUser});
+      if (data) {
+        await setUser({ ...data.foundUser });
+      }
     };
     fetchUser(currentUser);
-  }, []);
+  }, [currentUser]);
 
   return (
     <>
